@@ -1,0 +1,407 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="210mm"
+   height="297mm"
+   viewBox="0 0 210 297"
+   version="1.1"
+   id="svg8"
+   inkscape:version="1.0.1 (3bc2e813f5, 2020-09-07)"
+   sodipodi:docname="text_actor_logo.svg">
+  <defs
+     id="defs2" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="7.9195959"
+     inkscape:cx="152.58183"
+     inkscape:cy="-77.397956"
+     inkscape:document-units="mm"
+     inkscape:current-layer="layer1"
+     inkscape:document-rotation="0"
+     showgrid="true"
+     showguides="true"
+     inkscape:guide-bbox="true"
+     inkscape:window-width="3840"
+     inkscape:window-height="2137"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1">
+    <inkscape:grid
+       type="xygrid"
+       id="grid833"
+       units="mm"
+       spacingx="1"
+       spacingy="1"
+       dotted="false" />
+    <sodipodi:guide
+       position="18,298"
+       orientation="1,0"
+       id="guide865" />
+  </sodipodi:namedview>
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <rect
+       style="fill:#00aad4;stroke-width:0.173205;stroke-linejoin:round;paint-order:markers fill stroke"
+       id="rect835-7-1"
+       width="60"
+       height="20"
+       x="20"
+       y="-21"
+       inkscape:export-filename="C:\Data\Repository\Git\Github\TextActor\src\TextActor\TextActor.Android\Resources\drawable\text_actor_logo.png"
+       inkscape:export-xdpi="254"
+       inkscape:export-ydpi="254" />
+    <rect
+       style="fill:#00aad4;stroke-width:0.2;stroke-linejoin:round;paint-order:markers fill stroke"
+       id="rect835"
+       width="80"
+       height="20"
+       x="0"
+       y="0"
+       inkscape:export-filename="C:\Data\Repository\Git\Github\TextActor\src\TextActor\TextActor.Android\Resources\drawable\text_actor_logo.png"
+       inkscape:export-xdpi="254"
+       inkscape:export-ydpi="254" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:11.4426px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.286066;"
+       x="22.555273"
+       y="13.938981"
+       id="text839"
+       inkscape:export-filename="C:\Data\Repository\Git\Github\TextActor\src\TextActor\TextActor.Android\Resources\drawable\text_actor_logo.png"
+       inkscape:export-xdpi="254"
+       inkscape:export-ydpi="254"><tspan
+         sodipodi:role="line"
+         id="tspan837"
+         x="22.555273"
+         y="13.938981"
+         style="font-style:normal;font-variant:normal;font-weight:600;font-stretch:normal;font-family:'Segoe UI';-inkscape-font-specification:'Segoe UI Semi-Bold';stroke-width:0.286066;fill:#ffffff;">Text Actor</tspan></text>
+    <rect
+       style="fill:#aaeeff;stroke-width:0.2;stroke-linejoin:round;paint-order:markers fill stroke"
+       id="rect843"
+       width="18"
+       height="18"
+       x="1"
+       y="1"
+       rx="1"
+       ry="1"
+       inkscape:export-filename="C:\Data\Repository\Git\Github\TextActor\src\TextActor\TextActor.Android\Resources\drawable\text_actor_logo.png"
+       inkscape:export-xdpi="254"
+       inkscape:export-ydpi="254" />
+    <path
+       d="M 7,8 H 5 v 7 H 4 V 8 H 2 V 7 h 5 z"
+       style="font-style:normal;font-variant:normal;font-weight:600;font-stretch:normal;font-size:10.9008px;line-height:1.25;font-family:'Segoe UI';-inkscape-font-specification:'Segoe UI Semi-Bold';letter-spacing:0px;word-spacing:0px;fill:#0088aa;fill-opacity:1;stroke:none;stroke-width:0.276608"
+       id="path867"
+       sodipodi:nodetypes="ccccccccc"
+       inkscape:export-filename="C:\Data\Repository\Git\Github\TextActor\src\TextActor\TextActor.Android\Resources\drawable\text_actor_logo.png"
+       inkscape:export-xdpi="254"
+       inkscape:export-ydpi="254" />
+    <path
+       d="M 12.474574,8.2881394 11,12.230127 l 1.474574,3.481734 h -1.237287 l -0.964561,-2.181246 c -0.07359,-0.13303 -0.160172,-0.302759 -0.259738,-0.509185 H 9.987013 C 9.969697,13.06272 9.8787876,13.232444 9.7142863,13.530615 L 8.7627131,15.711861 H 7.5254262 l 1.52003,-3.454211 -1.52003,-3.9695106 H 8.7627131 L 9.8051952,10.95716 c 0.08658,0.169729 0.1709956,0.344045 0.2532468,0.522948 h 0.01949 L 11.23729,8.2881394 Z"
+       style="font-style:normal;font-variant:normal;font-weight:600;font-stretch:normal;font-size:10.9008px;line-height:1.25;font-family:'Segoe UI';-inkscape-font-specification:'Segoe UI Semi-Bold';letter-spacing:0px;word-spacing:0px;fill:#0088aa;fill-opacity:1;stroke:none;stroke-width:0.342243"
+       id="path869"
+       sodipodi:nodetypes="cccccccccccccccccc"
+       inkscape:export-filename="C:\Data\Repository\Git\Github\TextActor\src\TextActor\TextActor.Android\Resources\drawable\text_actor_logo.png"
+       inkscape:export-xdpi="254"
+       inkscape:export-ydpi="254" />
+    <path
+       d="m 18,8 h -2 v 7 H 15 V 8 H 13 V 7 h 5 z"
+       style="font-style:normal;font-variant:normal;font-weight:600;font-stretch:normal;font-size:10.9008px;line-height:1.25;font-family:'Segoe UI';-inkscape-font-specification:'Segoe UI Semi-Bold';letter-spacing:0px;word-spacing:0px;fill:#0088aa;fill-opacity:1;stroke:none;stroke-width:0.276609"
+       id="path867-7"
+       sodipodi:nodetypes="ccccccccc"
+       inkscape:export-filename="C:\Data\Repository\Git\Github\TextActor\src\TextActor\TextActor.Android\Resources\drawable\text_actor_logo.png"
+       inkscape:export-xdpi="254"
+       inkscape:export-ydpi="254" />
+    <path
+       sodipodi:type="star"
+       style="fill:#ffffff;stroke-width:0.123607;stroke-linejoin:round;paint-order:markers fill stroke"
+       id="path904"
+       sodipodi:sides="5"
+       sodipodi:cx="9.9999999"
+       sodipodi:cy="5.4721358"
+       sodipodi:r1="2.4721358"
+       sodipodi:r2="0.98885435"
+       sodipodi:arg1="-1.5707963"
+       sodipodi:arg2="-0.9424778"
+       inkscape:flatsided="false"
+       inkscape:rounded="0"
+       inkscape:randomized="0"
+       d="m 10,3.0000002 0.581234,1.6721358 1.769907,0.036068 -1.410685,1.0695047 0.512629,1.6944271 L 10,6.4609904 8.546915,7.4721358 9.0595436,5.7777088 7.6488592,4.708204 9.418766,4.672136 Z"
+       inkscape:transform-center-y="-0.23606796"
+       inkscape:export-filename="C:\Data\Repository\Git\Github\TextActor\src\TextActor\TextActor.Android\Resources\drawable\text_actor_logo.png"
+       inkscape:export-xdpi="254"
+       inkscape:export-ydpi="254" />
+    <rect
+       style="fill:#e6e6e6;stroke-width:0.1;stroke-linejoin:round;paint-order:markers fill stroke"
+       id="rect835-7"
+       width="20"
+       height="20"
+       x="2.0761171e-14"
+       y="-21"
+       inkscape:export-filename="C:\Data\Repository\Git\Github\TextActor\src\TextActor\TextActor.Android\Resources\drawable\text_actor_logo.png"
+       inkscape:export-xdpi="254"
+       inkscape:export-ydpi="254" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:11.4426px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.286065;"
+       x="23.689842"
+       y="-7.0610189"
+       id="text839-0"
+       inkscape:export-filename="C:\Data\Repository\Git\Github\TextActor\src\TextActor\TextActor.Android\Resources\drawable\text_actor_logo.png"
+       inkscape:export-xdpi="254"
+       inkscape:export-ydpi="254"><tspan
+         sodipodi:role="line"
+         id="tspan837-6"
+         x="23.689842"
+         y="-7.0610189"
+         style="font-style:normal;font-variant:normal;font-weight:600;font-stretch:normal;font-family:'Segoe UI';-inkscape-font-specification:'Segoe UI Semi-Bold';fill:#ffffff;stroke-width:0.286065;">Text Actor</tspan></text>
+    <g
+       id="g1380"
+       inkscape:export-filename="C:\Data\Repository\Git\Github\TextActor\src\TextActor\TextActor.Android\Resources\drawable\text_actor_logo.png"
+       inkscape:export-xdpi="254"
+       inkscape:export-ydpi="254">
+      <path
+         id="path1132"
+         style="fill:#f9f9f9;stroke:#00aad4;stroke-width:1;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal"
+         d="m 10.056233,-18.560624 a 6.9999999,6.9999999 0 0 0 -4.945434,2.050521 6.9999999,6.9999999 0 0 0 -1.1926919,8.3064696 l -0.9286256,3.713985 3.7139853,-0.9286256 a 6.9999999,6.9999999 0 0 0 8.3069862,-1.1921751 6.9999999,6.9999999 0 0 0 0.455269,-0.5017781 l -3.465938,-2.8876791 h 4.884456 a 6.9999999,6.9999999 0 0 0 -1.873787,-6.5101967 6.9999999,6.9999999 0 0 0 -0.0067,-0.0067 6.9999999,6.9999999 0 0 0 -4.947502,-2.043803 z" />
+      <path
+         style="fill:#ececec;stroke:#cccccc;stroke-width:0.7;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         d="M 6,-15 H 8"
+         id="path889" />
+      <path
+         style="fill:#ececec;stroke:#cccccc;stroke-width:0.7;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         d="M 5.9999999,-9 H 9"
+         id="path889-8" />
+      <path
+         style="fill:#ececec;stroke:#cccccc;stroke-width:0.7;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         d="m 9,-15 h 2"
+         id="path889-8-1" />
+      <path
+         style="fill:#ececec;stroke:#cccccc;stroke-width:0.7;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         d="m 10,-9 h 1"
+         id="path889-8-1-9" />
+      <path
+         style="fill:#ececec;stroke:#cccccc;stroke-width:0.7;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         d="m 6.0000001,-12 h 1"
+         id="path889-8-1-9-3" />
+      <path
+         style="fill:#ececec;stroke:#cccccc;stroke-width:0.7;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         d="m 8,-12 h 3"
+         id="path889-8-5" />
+      <circle
+         style="fill:#ececec;stroke:#0088aa;stroke-width:1;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal"
+         id="path1142"
+         cx="13.499999"
+         cy="-13.499999"
+         r="0.5" />
+    </g>
+    <g
+       id="g1441"
+       inkscape:export-filename="C:\Data\Repository\Git\Github\TextActor\src\TextActor\TextActor.Android\Resources\drawable\text_actor_icon.png"
+       inkscape:export-xdpi="1182.2545"
+       inkscape:export-ydpi="1182.2545">
+      <rect
+         style="fill:#ffffff;stroke:none;stroke-width:0.11;stroke-linejoin:round;paint-order:markers fill stroke"
+         id="rect835-7-5"
+         width="22"
+         height="22"
+         x="1.9984014e-15"
+         y="-44"
+         inkscape:export-filename="C:\Data\Repository\Git\Github\TextActor\src\TextActor\TextActor.Android\Resources\drawable\text_actor.png"
+         inkscape:export-xdpi="1300.48"
+         inkscape:export-ydpi="1300.48" />
+      <g
+         id="g1390"
+         inkscape:export-filename="C:\Data\Repository\Git\Github\TextActor\src\TextActor\TextActor.Android\Resources\drawable\text_actor.png"
+         inkscape:export-xdpi="1300.48"
+         inkscape:export-ydpi="1300.48"
+         transform="translate(1,-1)">
+        <path
+           id="path1132-7"
+           style="fill:#f9f9f9;stroke:#00aad4;stroke-width:1;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal"
+           d="m 10.056233,-39.560624 a 7,7 0 0 0 -4.945434,2.050521 7,7 0 0 0 -1.1926918,8.30647 l -0.9286256,3.713985 3.7139854,-0.928626 a 7,7 0 0 0 8.306986,-1.192175 7,7 0 0 0 0.455269,-0.501778 l -3.465938,-2.887679 h 4.884456 a 7,7 0 0 0 -1.873787,-6.510197 7,7 0 0 0 -0.0067,-0.0067 7,7 0 0 0 -4.947502,-2.043803 z" />
+        <path
+           style="fill:#ececec;stroke:#cccccc;stroke-width:0.7;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           d="M 6,-36 H 8"
+           id="path889-5" />
+        <path
+           style="fill:#ececec;stroke:#cccccc;stroke-width:0.7;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           d="M 6,-30 H 9"
+           id="path889-8-4" />
+        <path
+           style="fill:#ececec;stroke:#cccccc;stroke-width:0.7;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           d="m 9,-36 h 2"
+           id="path889-8-1-92" />
+        <path
+           style="fill:#ececec;stroke:#cccccc;stroke-width:0.7;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           d="m 10,-30 h 1"
+           id="path889-8-1-9-0" />
+        <path
+           style="fill:#ececec;stroke:#cccccc;stroke-width:0.7;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           d="M 6,-33 H 7"
+           id="path889-8-1-9-3-0" />
+        <path
+           style="fill:#ececec;stroke:#cccccc;stroke-width:0.7;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           d="m 8,-33 h 3"
+           id="path889-8-5-5" />
+        <circle
+           style="fill:#ececec;stroke:#0088aa;stroke-width:1;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal"
+           id="path1142-4"
+           cx="13.5"
+           cy="-34.5"
+           r="0.5" />
+      </g>
+    </g>
+    <g
+       id="g1429"
+       inkscape:export-filename="C:\Data\Repository\Git\Github\TextActor\src\TextActor\TextActor.Android\Resources\drawable\text_actor_icon_foreground_launcher.png"
+       inkscape:export-xdpi="1182.2545"
+       inkscape:export-ydpi="1182.2545">
+      <rect
+         style="fill:none;stroke:none;stroke-width:0.11;stroke-linejoin:round;paint-order:markers fill stroke"
+         id="rect835-7-5-8"
+         width="22"
+         height="22"
+         x="29"
+         y="-44"
+         inkscape:export-filename="C:\Data\Repository\Git\Github\TextActor\src\TextActor\TextActor.Android\Resources\drawable\text_actor_logo_foreground.png"
+         inkscape:export-xdpi="1300.48"
+         inkscape:export-ydpi="1300.48" />
+      <g
+         id="g1400"
+         transform="translate(9.1157609,-0.99999858)"
+         style="fill:#f9f9f9">
+        <path
+           id="path1132-7-0"
+           style="fill:#f9f9f9;stroke:#00aad4;stroke-width:1;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal"
+           d="m 31.056232,-39.560623 a 7,7 0 0 0 -4.945434,2.050521 7,7 0 0 0 -1.192692,8.30647 l -0.928625,3.713985 3.713985,-0.928626 a 7,7 0 0 0 8.306986,-1.192175 7,7 0 0 0 0.455269,-0.501778 l -3.465938,-2.887679 h 4.884456 a 7,7 0 0 0 -1.873787,-6.510197 7,7 0 0 0 -0.0067,-0.0067 7,7 0 0 0 -4.947502,-2.043803 z"
+           inkscape:export-filename="C:\Data\Repository\Git\Github\TextActor\src\TextActor\TextActor.Android\Resources\drawable\text_actor_logo_foreground.png"
+           inkscape:export-xdpi="1300.48"
+           inkscape:export-ydpi="1300.48" />
+        <path
+           style="fill:#f9f9f9;stroke:#cccccc;stroke-width:0.7;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           d="m 26.999999,-35.999999 h 2"
+           id="path889-5-3"
+           inkscape:export-filename="C:\Data\Repository\Git\Github\TextActor\src\TextActor\TextActor.Android\Resources\drawable\text_actor_logo_foreground.png"
+           inkscape:export-xdpi="1300.48"
+           inkscape:export-ydpi="1300.48" />
+        <path
+           style="fill:#f9f9f9;stroke:#cccccc;stroke-width:0.7;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           d="m 26.999999,-29.999999 h 3"
+           id="path889-8-4-5"
+           inkscape:export-filename="C:\Data\Repository\Git\Github\TextActor\src\TextActor\TextActor.Android\Resources\drawable\text_actor_logo_foreground.png"
+           inkscape:export-xdpi="1300.48"
+           inkscape:export-ydpi="1300.48" />
+        <path
+           style="fill:#f9f9f9;stroke:#cccccc;stroke-width:0.7;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           d="m 29.999999,-35.999999 h 2"
+           id="path889-8-1-92-9"
+           inkscape:export-filename="C:\Data\Repository\Git\Github\TextActor\src\TextActor\TextActor.Android\Resources\drawable\text_actor_logo_foreground.png"
+           inkscape:export-xdpi="1300.48"
+           inkscape:export-ydpi="1300.48" />
+        <path
+           style="fill:#f9f9f9;stroke:#cccccc;stroke-width:0.7;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           d="m 30.999999,-29.999999 h 1"
+           id="path889-8-1-9-0-4"
+           inkscape:export-filename="C:\Data\Repository\Git\Github\TextActor\src\TextActor\TextActor.Android\Resources\drawable\text_actor_logo_foreground.png"
+           inkscape:export-xdpi="1300.48"
+           inkscape:export-ydpi="1300.48" />
+        <path
+           style="fill:#f9f9f9;stroke:#cccccc;stroke-width:0.7;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           d="m 26.999999,-32.999999 h 1"
+           id="path889-8-1-9-3-0-4"
+           inkscape:export-filename="C:\Data\Repository\Git\Github\TextActor\src\TextActor\TextActor.Android\Resources\drawable\text_actor_logo_foreground.png"
+           inkscape:export-xdpi="1300.48"
+           inkscape:export-ydpi="1300.48" />
+        <path
+           style="fill:#f9f9f9;stroke:#cccccc;stroke-width:0.7;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           d="m 28.999999,-32.999999 h 3"
+           id="path889-8-5-5-8"
+           inkscape:export-filename="C:\Data\Repository\Git\Github\TextActor\src\TextActor\TextActor.Android\Resources\drawable\text_actor_logo_foreground.png"
+           inkscape:export-xdpi="1300.48"
+           inkscape:export-ydpi="1300.48" />
+        <circle
+           style="fill:#f9f9f9;stroke:#0088aa;stroke-width:1;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal"
+           id="path1142-4-1"
+           cx="34.5"
+           cy="-34.5"
+           r="0.5"
+           inkscape:export-filename="C:\Data\Repository\Git\Github\TextActor\src\TextActor\TextActor.Android\Resources\drawable\text_actor_logo_foreground.png"
+           inkscape:export-xdpi="1300.48"
+           inkscape:export-ydpi="1300.48" />
+      </g>
+    </g>
+    <rect
+       style="fill:#ffffff;stroke:none;stroke-width:0.1;stroke-linejoin:round;paint-order:markers fill stroke"
+       id="rect835-7-5-8-8"
+       width="20"
+       height="20"
+       x="60"
+       y="-42.000095"
+       inkscape:export-filename="C:\Data\Repository\Git\Github\TextActor\src\TextActor\TextActor.Android\Resources\drawable\text_actor_logo.png"
+       inkscape:export-xdpi="254"
+       inkscape:export-ydpi="254" />
+    <g
+       id="g1410"
+       style="fill:#ffffff"
+       transform="translate(17.884239)">
+      <path
+         id="path1132-7-0-8"
+         style="fill:#ffffff;stroke:#000000;stroke-width:1;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal"
+         d="m 52.171993,-39.560718 a 7,7 0 0 0 -4.945434,2.050521 7,7 0 0 0 -1.192692,8.30647 l -0.928625,3.713985 3.713985,-0.928626 a 7,7 0 0 0 8.306986,-1.192175 7,7 0 0 0 0.455269,-0.501778 L 54.115544,-31 H 59 a 7,7 0 0 0 -1.873787,-6.510197 7,7 0 0 0 -0.0067,-0.0067 7,7 0 0 0 -4.947502,-2.043803 z" />
+      <path
+         style="fill:#ffffff;stroke:#000000;stroke-width:0.7;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         d="m 48.11576,-36.000094 h 2"
+         id="path889-5-3-2" />
+      <path
+         style="fill:#ffffff;stroke:#000000;stroke-width:0.7;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         d="m 48.11576,-30.000094 h 3"
+         id="path889-8-4-5-5" />
+      <path
+         style="fill:#ffffff;stroke:#000000;stroke-width:0.7;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         d="m 51.11576,-36.000094 h 2"
+         id="path889-8-1-92-9-5" />
+      <path
+         style="fill:#ffffff;stroke:#000000;stroke-width:0.7;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         d="m 52.11576,-30.000094 h 1"
+         id="path889-8-1-9-0-4-4" />
+      <path
+         style="fill:#ffffff;stroke:#000000;stroke-width:0.7;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         d="m 48.11576,-33.000094 h 1"
+         id="path889-8-1-9-3-0-4-1" />
+      <path
+         style="fill:#ffffff;stroke:#000000;stroke-width:0.7;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         d="m 50.11576,-33.000094 h 3"
+         id="path889-8-5-5-8-2" />
+      <circle
+         style="fill:#ffffff;stroke:#000000;stroke-width:1;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal"
+         id="path1142-4-1-3"
+         cx="55.615761"
+         cy="-34.500095"
+         r="0.5" />
+    </g>
+  </g>
+</svg>
