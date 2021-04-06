@@ -1,5 +1,6 @@
 ﻿namespace TextActor.Models
 {
+    using System;
     using TextActor.Extensions;
     using TextActor.Helpers;
 
@@ -10,7 +11,9 @@
     {
         #region Fields
 
-        private int _id;
+        private string _id;
+
+        private string _localeName = "English(United States)";
 
         private string _name;
 
@@ -20,12 +23,29 @@
 
         #endregion Fields
 
+        #region Constructors
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Actor"/> class.
+        /// </summary>
+        public Actor()
+        {
+            this.Id = Guid.NewGuid().ToString();
+        }
+
+        #endregion Constructors
+
         #region Properties
 
         /// <summary>
         /// Gets or sets the Id.
         /// </summary>
-        public int Id { get => _id; set => this.Set(this.PropertyChangedHandler, ref _id, value); }
+        public string Id { get => _id; set => this.Set(this.PropertyChangedHandler, ref _id, value); }
+
+        /// <summary>
+        /// Gets or sets the LocaleName.
+        /// </summary>
+        public string LocaleName { get => _localeName; set => this.Set(this.PropertyChangedHandler, ref _localeName, value); }
 
         /// <summary>
         /// Gets or sets the Name.

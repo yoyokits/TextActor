@@ -2,6 +2,8 @@
 {
     using System.Threading;
     using System.Windows.Input;
+    using TextActor.Helpers;
+    using TextActor.Models;
     using Xamarin.Essentials;
     using Xamarin.Forms;
 
@@ -15,6 +17,10 @@
         private bool _isPlaying;
 
         private string _playButtonImage = "media_play.png";
+
+        private Actor _selectedActor;
+
+        private SpeechOptions _speechOptions;
 
         private string _text;
 
@@ -32,6 +38,7 @@
             this.ClearCommand = new Command(this.OnClear);
             this.PlayCommand = new Command(this.OnPlay);
             this.PasteAndPlayCommand = new Command(this.OnPasteAndPlayAsync);
+            this.SelectedActor = new Actor { Name = "James Bond", Pitch = 0.7f, Volume = 0.7f };
         }
 
         #endregion Constructors
@@ -57,6 +64,28 @@
         /// Gets the PlayCommand.
         /// </summary>
         public ICommand PlayCommand { get; }
+
+        /// <summary>
+        /// Gets or sets the SelectedActor.
+        /// </summary>
+        public Actor SelectedActor { get => _selectedActor; set => _selectedActor = value; }
+
+        /// <summary>
+        /// Gets the SpeechOptions.
+        /// </summary>
+        public SpeechOptions SpeechOptions
+        {
+            get
+            {
+                if (_speechOptions != null)
+                {
+                    return _speechOptions;
+                }
+
+                _speechOptions = new SpeechOptions() { Locale = TextToSpeechHelper.DefaultLocale, Pitch = this.SelectedActor.Pitch, Volume = this.SelectedActor.Volume };
+                return _speechOptions;
+            }
+        }
 
         /// <summary>
         /// Gets or sets the Text.
@@ -103,7 +132,7 @@
             this.CancellationTokenSource?.Cancel();
             this.CancellationTokenSource = new CancellationTokenSource();
             this.IsPlaying = true;
-            await TextToSpeech.SpeakAsync(this.Text, this.CancellationTokenSource.Token);
+            await TextToSpeech.SpeakAsync(this.Text, this.SpeechOptions, this.CancellationTokenSource.Token);
             this.IsPlaying = false;
         }
 

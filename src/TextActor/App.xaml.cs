@@ -1,32 +1,54 @@
-﻿using System;
-using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
-using TextActor.Services;
-using TextActor.Views;
-
-namespace TextActor
+﻿namespace TextActor
 {
+    using TextActor.Helpers;
+    using TextActor.Services;
+    using Xamarin.Forms;
+
+    /// <summary>
+    /// Defines the <see cref="App" />.
+    /// </summary>
     public partial class App : Application
     {
+        #region Constructors
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="App"/> class.
+        /// </summary>
         public App()
         {
             InitializeComponent();
 
+            DependencyService.Register<ActorDataStore>();
             DependencyService.Register<MockDataStore>();
             MainPage = new AppShell();
         }
 
-        protected override void OnStart()
+        #endregion Constructors
+
+        #region Methods
+
+        /// <summary>
+        /// The OnResume.
+        /// </summary>
+        protected override void OnResume()
         {
         }
 
+        /// <summary>
+        /// The OnSleep.
+        /// </summary>
         protected override void OnSleep()
         {
         }
 
-        protected override void OnResume()
+        /// <summary>
+        /// The OnStart.
+        /// </summary>
+        protected override void OnStart()
         {
+            TextToSpeechHelper.InitializeAsync();
         }
+
+        #endregion Methods
     }
 }

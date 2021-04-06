@@ -4,7 +4,8 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:vm="clr-namespace:TextActor.ViewModels"
-    Title="{Binding Title}">
+    Title="{Binding Title}"
+    x:DataType="vm:TextPlayerViewModel">
     <ContentPage.BindingContext>
         <vm:TextPlayerViewModel />
     </ContentPage.BindingContext>

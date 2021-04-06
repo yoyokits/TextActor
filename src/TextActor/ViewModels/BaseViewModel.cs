@@ -33,6 +33,11 @@
         #region Properties
 
         /// <summary>
+        /// Gets the ActorDataStore.
+        /// </summary>
+        public IDataStore<Actor> ActorDataStore => DependencyService.Get<IDataStore<Actor>>();
+
+        /// <summary>
         /// Gets the DataStore.
         /// </summary>
         public IDataStore<Item> DataStore => DependencyService.Get<IDataStore<Item>>();

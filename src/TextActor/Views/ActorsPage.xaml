@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="TextActor.Views.ActorsPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:TextActor.ViewModels"
+    xmlns:model="clr-namespace:TextActor.Models"
+    Title="{Binding Title}"
+    x:DataType="local:ActorsViewModel">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem
+            Command="{Binding AddActorCommand}"
+            IconImageSource="add_actor"
+            Text="Add" />
+    </ContentPage.ToolbarItems>
+    <RefreshView
+        x:DataType="local:ActorsViewModel"
+        Command="{Binding LoadActorsCommand}"
+        IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
+        <CollectionView
+            x:Name="ItemsListView"
+            BackgroundColor="#D0D0D0"
+            ItemsSource="{Binding Actors}"
+            SelectionMode="None">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <StackLayout
+                        Padding="10"
+                        x:DataType="model:Actor"
+                        BackgroundColor="#FFFFFF">
+                        <Label
+                            FontSize="16"
+                            LineBreakMode="NoWrap"
+                            Style="{DynamicResource ListItemTextStyle}"
+                            Text="{Binding Name}" />
+                        <StackLayout Orientation="Horizontal">
+                            <Label
+                                FontSize="13"
+                                LineBreakMode="NoWrap"
+                                Style="{DynamicResource ListItemDetailTextStyle}"
+                                Text="Pitch: " />
+                            <Label
+                                FontSize="13"
+                                LineBreakMode="NoWrap"
+                                Style="{DynamicResource ListItemDetailTextStyle}"
+                                Text="{Binding Pitch}" />
+                            <Label
+                                FontSize="13"
+                                LineBreakMode="NoWrap"
+                                Style="{DynamicResource ListItemDetailTextStyle}"
+                                Text="Volume: " />
+                            <Label
+                                FontSize="13"
+                                LineBreakMode="NoWrap"
+                                Style="{DynamicResource ListItemDetailTextStyle}"
+                                Text="{Binding Volume}" />
+                        </StackLayout>
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Command="{Binding Source={RelativeSource AncestorType={x:Type local:ActorsViewModel}}, Path=ActorTapped}"
+                                CommandParameter="{Binding .}"
+                                NumberOfTapsRequired="1" />
+                        </StackLayout.GestureRecognizers>
+                    </StackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </RefreshView>
+</ContentPage>
