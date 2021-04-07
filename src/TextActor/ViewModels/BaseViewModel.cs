@@ -43,6 +43,11 @@
         public IDataStore<Item> DataStore => DependencyService.Get<IDataStore<Item>>();
 
         /// <summary>
+        /// Gets the DialogDataStore.
+        /// </summary>
+        public IDataStore<Dialog> DialogDataStore => DependencyService.Get<IDataStore<Dialog>>();
+
+        /// <summary>
         /// Gets or sets a value indicating whether IsBusy.
         /// </summary>
         public bool IsBusy
@@ -72,7 +77,9 @@
         {
             var changed = PropertyChanged;
             if (changed == null)
+            {
                 return;
+            }
 
             changed.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }

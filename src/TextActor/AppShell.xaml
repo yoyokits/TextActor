@@ -36,6 +36,10 @@
             ContentTemplate="{DataTemplate local:TextPlayerPage}"
             Icon="read.png" />
         <ShellContent
+            Title="Story"
+            ContentTemplate="{DataTemplate local:StoryPage}"
+            Icon="chat.png" />
+        <ShellContent
             Title="Actors"
             ContentTemplate="{DataTemplate local:ActorsPage}"
             Icon="people.png" />

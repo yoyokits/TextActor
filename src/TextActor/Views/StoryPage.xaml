@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="TextActor.Views.StoryPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:converters="clr-namespace:TextActor.Converters"
+    xmlns:vm="clr-namespace:TextActor.ViewModels"
+    x:Name="StoryPageRoot"
+    Title="{Binding Title}"
+    x:DataType="vm:StoryViewModel">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem
+            Command="{Binding AddDialogCommand}"
+            IconImageSource="add_chat"
+            Text="Add" />
+        <ToolbarItem
+            Command="{Binding ClearDialogCommand}"
+            CommandParameter="{x:Reference StoryPageRoot}"
+            IconImageSource="clear"
+            Text="Clear" />
+        <ToolbarItem
+            Command="{Binding PlayCommand}"
+            IconImageSource="{Binding PlayButtonImage}"
+            Text="Play" />
+    </ContentPage.ToolbarItems>
+    <RefreshView Command="{Binding LoadDialogsCommand}" IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
+        <CollectionView
+            x:Name="ItemsListView"
+            BackgroundColor="#EEEEEE"
+            ItemsSource="{Binding DialogDetails}"
+            SelectedItem="{Binding SelectedDialog, Mode=TwoWay}"
+            SelectionMode="Single">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <ContentView
+                        x:Name="DialogDetailItemControl"
+                        Padding="4,2,4,2"
+                        x:DataType="vm:DialogDetailViewModel">
+                        <StackLayout BackgroundColor="#FFFFFF">
+                            <Grid Margin="10,4,4,0">
+                                <Picker
+                                    Title="Select an actor"
+                                    HorizontalOptions="Start"
+                                    IsEnabled="{Binding IsSelected}"
+                                    ItemDisplayBinding="{Binding Name}"
+                                    ItemsSource="{Binding Actors}"
+                                    SelectedItem="{Binding SelectedActor, Mode=TwoWay}" />
+                                <StackLayout
+                                    HorizontalOptions="End"
+                                    IsVisible="{Binding IsSelected}"
+                                    Orientation="Horizontal">
+                                    <Button
+                                        Command="{Binding Source={RelativeSource AncestorType={x:Type vm:StoryViewModel}}, Path=RemoveSelectedCommand}"
+                                        CommandParameter="{Binding}"
+                                        HeightRequest="34"
+                                        ImageSource="clear.png"
+                                        VerticalOptions="Start"
+                                        WidthRequest="34" />
+                                    <Button
+                                        Command="{Binding Source={RelativeSource AncestorType={x:Type vm:StoryViewModel}}, Path=PlaySelectedCommand}"
+                                        CommandParameter="{Binding}"
+                                        HeightRequest="34"
+                                        ImageSource="{Binding Source={RelativeSource AncestorType={x:Type vm:StoryViewModel}}, Path=TextPlayer.PlayButtonImage}"
+                                        VerticalOptions="Start"
+                                        WidthRequest="34" />
+                                </StackLayout>
+                            </Grid>
+                            <Editor
+                                Margin="20,0,10,0"
+                                AutoSize="TextChanges"
+                                FontSize="16"
+                                HeightRequest="50"
+                                IsReadOnly="{Binding IsSelected, Converter={x:Static converters:InverseBoolConverter.Instance}}"
+                                Text="{Binding Message, Mode=TwoWay}">
+                                <Editor.GestureRecognizers>
+                                    <TapGestureRecognizer
+                                        Command="{Binding Source={RelativeSource AncestorType={x:Type vm:StoryViewModel}}, Path=DialogTapped}"
+                                        CommandParameter="{Binding}"
+                                        NumberOfTapsRequired="1" />
+                                </Editor.GestureRecognizers>
+                            </Editor>
+                        </StackLayout>
+                        <ContentView.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Command="{Binding Source={RelativeSource AncestorType={x:Type vm:StoryViewModel}}, Path=DialogTapped}"
+                                CommandParameter="{Binding Source={RelativeSource AncestorType={x:Type vm:DialogDetailViewModel}}}"
+                                NumberOfTapsRequired="1" />
+                        </ContentView.GestureRecognizers>
+                    </ContentView>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </RefreshView>
+</ContentPage>

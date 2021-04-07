@@ -1,7 +1,6 @@
 ﻿namespace TextActor.ViewModels
 {
     using System.Collections.Generic;
-    using System.Linq;
     using System.Threading;
     using System.Windows.Input;
     using TextActor.Helpers;
@@ -22,7 +21,7 @@
 
         private float _pitch;
 
-        private SpeechOptions _speechOptions;
+        private Locale _selectedLocale;
 
         private string _testText = "Hello, you are using Text Actor voice test";
 
@@ -40,6 +39,9 @@
             Name = "No Name";
             Pitch = 0.5f;
             Volume = 0.7f;
+            Locales = TextToSpeechHelper.Locales;
+            SelectedLocale = TextToSpeechHelper.DefaultLocale;
+            TextPlayer = new TextPlayer();
             PlayCommand = new Command(OnPlay);
             CancelCommand = new Command(OnCancel);
             SaveCommand = new Command(OnSave, ValidateSave);
@@ -82,22 +84,9 @@
         public Command SaveCommand { get; }
 
         /// <summary>
-        /// Gets the SpeechOptions.
+        /// Gets or sets the SelectedLocale.
         /// </summary>
-        public SpeechOptions SpeechOptions
-        {
-            get
-            {
-                if (_speechOptions != null)
-                {
-                    return _speechOptions;
-                }
-
-                Locales = TextToSpeechHelper.Locales;
-                _speechOptions = new SpeechOptions() { Locale = TextToSpeechHelper.DefaultLocale, Pitch = Pitch, Volume = Volume };
-                return _speechOptions;
-            }
-        }
+        public Locale SelectedLocale { get => _selectedLocale; set => this.SetProperty(ref _selectedLocale, value); }
 
         /// <summary>
         /// Gets or sets the TestText.
@@ -105,14 +94,14 @@
         public string TestText { get => _testText; set => this.SetProperty(ref _testText, value); }
 
         /// <summary>
+        /// Gets the TextPlayer.
+        /// </summary>
+        public TextPlayer TextPlayer { get; }
+
+        /// <summary>
         /// Gets or sets the Volume.
         /// </summary>
         public float Volume { get => _volume; set => SetProperty(ref _volume, value); }
-
-        /// <summary>
-        /// Gets or sets the CancellationTokenSource.
-        /// </summary>
-        private CancellationTokenSource CancellationTokenSource { get; set; }
 
         #endregion Properties
 
@@ -133,16 +122,7 @@
         /// <param name="obj">The obj<see cref="object"/>.</param>
         private async void OnPlay(object obj)
         {
-            if (string.IsNullOrWhiteSpace(TestText))
-            {
-                return;
-            }
-
-            CancellationTokenSource?.Cancel();
-            CancellationTokenSource = new CancellationTokenSource();
-            SpeechOptions.Pitch = Pitch;
-            SpeechOptions.Volume = Volume;
-            await TextToSpeech.SpeakAsync(this.TestText, SpeechOptions, this.CancellationTokenSource.Token);
+            await TextPlayer.Play(TestText, Pitch, Volume, SelectedLocale);
         }
 
         /// <summary>
@@ -154,6 +134,7 @@
             var actor = new Actor()
             {
                 Name = Name,
+                LocaleName = SelectedLocale.Name,
                 Pitch = Pitch,
                 Volume = Volume
             };

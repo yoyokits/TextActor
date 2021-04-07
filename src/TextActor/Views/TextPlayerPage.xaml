@@ -16,7 +16,7 @@
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <Grid>
-            <Editor Text="{Binding Text}" />
+            <Editor Placeholder="Type or paste text here and press play to hear it..." Text="{Binding Text}" />
         </Grid>
     </ContentPage.Content>
 </ContentPage>

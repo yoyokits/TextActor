@@ -32,6 +32,11 @@
         /// <returns>The <see cref="Locale"/>.</returns>
         public static Locale GetLocale(string name)
         {
+            if (string.IsNullOrEmpty(name))
+            {
+                return DefaultLocale;
+            }
+
             var locales = Locales.Where(local => local.Name.Contains(name));
             return locales == null || !locales.Any() ? DefaultLocale : locales.First();
         }

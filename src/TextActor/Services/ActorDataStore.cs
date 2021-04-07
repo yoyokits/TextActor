@@ -19,8 +19,9 @@
         {
             Actors = new List<Actor>()
             {
-                new Actor { Name = "Ivana", Pitch=0.8f, Volume=0.6f },
-                new Actor { Name = "Olga", Pitch=0.7f, Volume=0.8f },
+                new Actor { Id="0", Name = "Ivana", Pitch=0.8f, Volume=0.6f, LocaleName="English(United States)" },
+                new Actor { Id="1",Name = "Olga", Pitch=0.7f, Volume=0.8f, LocaleName="Russian (Russia)" },
+                new Actor { Id="2",Name = "Indira", Pitch=0.7f, Volume=0.8f , LocaleName="Hindi (India)"},
             };
         }
 

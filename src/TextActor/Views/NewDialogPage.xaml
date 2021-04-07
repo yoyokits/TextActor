@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="TextActor.Views.NewDialogPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:vm="clr-namespace:TextActor.ViewModels"
+    Title="New Dialog"
+    x:DataType="vm:NewDialogViewModel">
+    <ContentPage.BindingContext>
+        <vm:NewDialogViewModel />
+    </ContentPage.BindingContext>
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Command="{Binding SaveCommand}" IconImageSource="add_chat" />
+        <ToolbarItem Command="{Binding PlayCommand}" IconImageSource="{Binding TextPlayer.PlayButtonImage}" />
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <StackLayout Margin="4">
+            <StackLayout>
+                <Label Text="Select Actor" />
+                <Picker
+                    Title="Select an actor"
+                    ItemDisplayBinding="{Binding Name}"
+                    ItemsSource="{Binding Actors}"
+                    SelectedItem="{Binding SelectedActor, Mode=TwoWay}" />
+            </StackLayout>
+            <Label Text="Text" />
+            <Editor
+                HeightRequest="150"
+                Placeholder="Type text to say here... ."
+                Text="{Binding Message, Mode=TwoWay}" />
+            <Button
+                Command="{Binding CancelCommand}"
+                HorizontalOptions="FillAndExpand"
+                Text="Cancel" />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
