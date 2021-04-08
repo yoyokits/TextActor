@@ -16,6 +16,8 @@
         /// </summary>
         public static Locale DefaultLocale { get; set; }
 
+        public static string DefaultLocaleName { get; } = "English (United States)";
+
         /// <summary>
         /// Gets the Locales.
         /// </summary>
@@ -55,7 +57,7 @@
                 return;
             }
 
-            var usEnglish = englishLocales.Where(local => local.Name.Contains("English(United States)"));
+            var usEnglish = englishLocales.Where(local => local.Name.Contains(DefaultLocaleName));
             if (usEnglish == null && !usEnglish.Any())
             {
                 DefaultLocale = englishLocales.FirstOrDefault();

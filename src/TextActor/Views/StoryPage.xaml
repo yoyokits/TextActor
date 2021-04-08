@@ -69,7 +69,6 @@
                                 Margin="20,0,10,0"
                                 AutoSize="TextChanges"
                                 FontSize="16"
-                                HeightRequest="50"
                                 IsReadOnly="{Binding IsSelected, Converter={x:Static converters:InverseBoolConverter.Instance}}"
                                 Text="{Binding Message, Mode=TwoWay}">
                                 <Editor.GestureRecognizers>

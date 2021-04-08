@@ -3,6 +3,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
+    using TextActor.Helpers;
     using TextActor.Models;
 
     /// <summary>
@@ -19,9 +20,9 @@
         {
             Actors = new List<Actor>()
             {
-                new Actor { Id="0", Name = "Ivana", Pitch=0.8f, Volume=0.6f, LocaleName="English(United States)" },
-                new Actor { Id="1",Name = "Olga", Pitch=0.7f, Volume=0.8f, LocaleName="Russian (Russia)" },
-                new Actor { Id="2",Name = "Indira", Pitch=0.7f, Volume=0.8f , LocaleName="Hindi (India)"},
+                new Actor { Id=0, IsProtected= true, Name = "Ivana", Pitch=0.8f, Volume=0.6f, LocaleName=TextToSpeechHelper.DefaultLocaleName },
+                new Actor { Id=1, IsProtected= true, Name = "Olga", Pitch=0.7f, Volume=0.8f, LocaleName="Russian (Russia)" },
+                new Actor { Id=2, IsProtected= true, Name = "Indira", Pitch=0.7f, Volume=0.8f , LocaleName="Hindi (India)"},
             };
         }
 
@@ -52,9 +53,9 @@
         /// <summary>
         /// The DeleteItemAsync.
         /// </summary>
-        /// <param name="id">The id<see cref="string"/>.</param>
+        /// <param name="id">The id<see cref="int"/>.</param>
         /// <returns>The <see cref="Task{bool}"/>.</returns>
-        public async Task<bool> DeleteItemAsync(string id)
+        public async Task<bool> DeleteItemAsync(int id)
         {
             var oldItem = Actors.Where((Actor arg) => arg.Id == id).FirstOrDefault();
             Actors.Remove(oldItem);
@@ -65,9 +66,9 @@
         /// <summary>
         /// The GetItemAsync.
         /// </summary>
-        /// <param name="id">The id<see cref="string"/>.</param>
+        /// <param name="id">The id<see cref="int"/>.</param>
         /// <returns>The <see cref="Task{Actor}"/>.</returns>
-        public async Task<Actor> GetItemAsync(string id)
+        public async Task<Actor> GetItemAsync(int id)
         {
             return await Task.FromResult(Actors.FirstOrDefault(s => s.Id == id));
         }

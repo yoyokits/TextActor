@@ -19,7 +19,7 @@
 
         private IEnumerable<Actor> _actors;
 
-        private string _id;
+        private int _id;
 
         private bool _isSelected;
 
@@ -48,7 +48,7 @@
         /// <summary>
         /// Gets the ActorId.
         /// </summary>
-        public string ActorId { get; private set; }
+        public int ActorId { get; private set; }
 
         /// <summary>
         /// Gets or sets the Actors.
@@ -58,7 +58,7 @@
         /// <summary>
         /// Gets or sets the Id.
         /// </summary>
-        public string Id
+        public int Id
         {
             get => _id;
             set
@@ -111,8 +111,8 @@
         /// <summary>
         /// The LoadDialogId.
         /// </summary>
-        /// <param name="id">The id<see cref="string"/>.</param>
-        internal async void LoadDialogId(string id)
+        /// <param name="id">The id<see cref="int"/>.</param>
+        internal async void LoadDialogId(int id)
         {
             try
             {

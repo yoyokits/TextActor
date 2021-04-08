@@ -16,7 +16,7 @@
     {
         #region Fields
 
-        private string _id;
+        private int _id;
 
         private string _name;
 
@@ -50,7 +50,7 @@
         /// <summary>
         /// Gets or sets the Id.
         /// </summary>
-        public string Id
+        public int Id
         {
             get => _id;
             set
@@ -109,8 +109,8 @@
         /// <summary>
         /// The LoadActorId.
         /// </summary>
-        /// <param name="id">The id<see cref="string"/>.</param>
-        public async void LoadActorId(string id)
+        /// <param name="id">The id<see cref="int"/>.</param>
+        public async void LoadActorId(int id)
         {
             try
             {

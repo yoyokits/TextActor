@@ -19,11 +19,11 @@
         {
             Dialogs = new List<Dialog>()
             {
-                new Dialog { ActorId = "0", Message = "Hi, how are you?" },
-                new Dialog { ActorId = "1", Message = "Hi, never better, and how are you?" },
-                new Dialog { ActorId = "0", Message = "I am really good!" },
-                new Dialog { ActorId = "2", Message = "Hey guys, wow, that's great we can meet here now." },
-                new Dialog { ActorId = "1", Message = "Yeah right, ok guys I bring the drinks." },
+                new Dialog { ActorId = 0, Message = "Hi, how are you?" },
+                new Dialog { ActorId = 1, Message = "Hi, never better, and how are you?" },
+                new Dialog { ActorId = 0, Message = "I am really good!" },
+                new Dialog { ActorId = 2, Message = "Hey guys, wow, that's great we can meet here now." },
+                new Dialog { ActorId = 1, Message = "Yeah right, ok guys I bring the drinks." },
             };
         }
 
@@ -54,9 +54,9 @@
         /// <summary>
         /// The DeleteItemAsync.
         /// </summary>
-        /// <param name="id">The id<see cref="string"/>.</param>
+        /// <param name="id">The id<see cref="int"/>.</param>
         /// <returns>The <see cref="Task{bool}"/>.</returns>
-        public async Task<bool> DeleteItemAsync(string id)
+        public async Task<bool> DeleteItemAsync(int id)
         {
             var oldItem = Dialogs.Where((Dialog arg) => arg.Id == id).FirstOrDefault();
             Dialogs.Remove(oldItem);
@@ -67,9 +67,9 @@
         /// <summary>
         /// The GetItemAsync.
         /// </summary>
-        /// <param name="id">The id<see cref="string"/>.</param>
+        /// <param name="id">The id<see cref="int"/>.</param>
         /// <returns>The <see cref="Task{Dialog}"/>.</returns>
-        public async Task<Dialog> GetItemAsync(string id)
+        public async Task<Dialog> GetItemAsync(int id)
         {
             return await Task.FromResult(Dialogs.FirstOrDefault(s => s.Id == id));
         }

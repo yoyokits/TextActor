@@ -1,7 +1,6 @@
 ﻿namespace TextActor.ViewModels
 {
     using System.Collections.Generic;
-    using System.Threading;
     using System.Windows.Input;
     using TextActor.Helpers;
     using TextActor.Models;
@@ -36,10 +35,9 @@
         /// </summary>
         public NewActorViewModel()
         {
-            Name = "No Name";
-            Pitch = 0.5f;
-            Volume = 0.7f;
             Locales = TextToSpeechHelper.Locales;
+            Pitch = 0.8f;
+            Volume = 0.7f;
             SelectedLocale = TextToSpeechHelper.DefaultLocale;
             TextPlayer = new TextPlayer();
             PlayCommand = new Command(OnPlay);
@@ -152,7 +150,7 @@
         /// <returns>The <see cref="bool"/>.</returns>
         private bool ValidateSave(object arg)
         {
-            return Volume > 0f && Pitch > 0f && !string.IsNullOrEmpty(Name) && !string.IsNullOrWhiteSpace(Name) && Name != "No Name";
+            return Volume > 0f && Pitch > 0f && !string.IsNullOrEmpty(Name) && !string.IsNullOrWhiteSpace(Name) && Name != "No Name" && SelectedLocale != null;
         }
 
         #endregion Methods

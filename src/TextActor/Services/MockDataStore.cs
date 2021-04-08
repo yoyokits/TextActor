@@ -8,18 +8,18 @@ namespace TextActor.Services
 {
     public class MockDataStore : IDataStore<Item>
     {
-        readonly List<Item> items;
+        private readonly List<Item> items;
 
         public MockDataStore()
         {
             items = new List<Item>()
             {
-                new Item { Id = Guid.NewGuid().ToString(), Text = "First item", Description="This is an item description." },
-                new Item { Id = Guid.NewGuid().ToString(), Text = "Second item", Description="This is an item description." },
-                new Item { Id = Guid.NewGuid().ToString(), Text = "Third item", Description="This is an item description." },
-                new Item { Id = Guid.NewGuid().ToString(), Text = "Fourth item", Description="This is an item description." },
-                new Item { Id = Guid.NewGuid().ToString(), Text = "Fifth item", Description="This is an item description." },
-                new Item { Id = Guid.NewGuid().ToString(), Text = "Sixth item", Description="This is an item description." }
+                new Item { Id = 0, Text = "First item", Description="This is an item description." },
+                new Item { Id = 1, Text = "Second item", Description="This is an item description." },
+                new Item { Id = 2, Text = "Third item", Description="This is an item description." },
+                new Item { Id = 3, Text = "Fourth item", Description="This is an item description." },
+                new Item { Id = 4, Text = "Fifth item", Description="This is an item description." },
+                new Item { Id = 5, Text = "Sixth item", Description="This is an item description." }
             };
         }
 
@@ -39,7 +39,7 @@ namespace TextActor.Services
             return await Task.FromResult(true);
         }
 
-        public async Task<bool> DeleteItemAsync(string id)
+        public async Task<bool> DeleteItemAsync(int id)
         {
             var oldItem = items.Where((Item arg) => arg.Id == id).FirstOrDefault();
             items.Remove(oldItem);
@@ -47,7 +47,7 @@ namespace TextActor.Services
             return await Task.FromResult(true);
         }
 
-        public async Task<Item> GetItemAsync(string id)
+        public async Task<Item> GetItemAsync(int id)
         {
             return await Task.FromResult(items.FirstOrDefault(s => s.Id == id));
         }

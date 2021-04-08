@@ -1,45 +1,67 @@
-﻿using System;
-using System.Diagnostics;
-using System.Threading.Tasks;
-using TextActor.Models;
-using Xamarin.Forms;
-
-namespace TextActor.ViewModels
+﻿namespace TextActor.ViewModels
 {
+    using System;
+    using System.Diagnostics;
+    using Xamarin.Forms;
+
+    /// <summary>
+    /// Defines the <see cref="ItemDetailViewModel" />.
+    /// </summary>
     [QueryProperty(nameof(ItemId), nameof(ItemId))]
     public class ItemDetailViewModel : BaseViewModel
     {
-        private string itemId;
-        private string text;
-        private string description;
-        public string Id { get; set; }
+        #region Fields
 
-        public string Text
-        {
-            get => text;
-            set => SetProperty(ref text, value);
-        }
+        private string _description;
 
-        public string Description
-        {
-            get => description;
-            set => SetProperty(ref description, value);
-        }
+        private int _itemId;
 
-        public string ItemId
+        private string _text;
+
+        #endregion Fields
+
+        #region Properties
+
+        /// <summary>
+        /// Gets or sets the Description.
+        /// </summary>
+        public string Description { get => _description; set => SetProperty(ref _description, value); }
+
+        /// <summary>
+        /// Gets or sets the Id.
+        /// </summary>
+        public int Id { get; set; }
+
+        /// <summary>
+        /// Gets or sets the ItemId.
+        /// </summary>
+        public int ItemId
         {
             get
             {
-                return itemId;
+                return _itemId;
             }
             set
             {
-                itemId = value;
+                _itemId = value;
                 LoadItemId(value);
             }
         }
 
-        public async void LoadItemId(string itemId)
+        /// <summary>
+        /// Gets or sets the Text.
+        /// </summary>
+        public string Text { get => _text; set => SetProperty(ref _text, value); }
+
+        #endregion Properties
+
+        #region Methods
+
+        /// <summary>
+        /// The LoadItemId.
+        /// </summary>
+        /// <param name="itemId">The itemId<see cref="int"/>.</param>
+        public async void LoadItemId(int itemId)
         {
             try
             {
@@ -53,5 +75,7 @@ namespace TextActor.ViewModels
                 Debug.WriteLine("Failed to Load Item");
             }
         }
+
+        #endregion Methods
     }
 }

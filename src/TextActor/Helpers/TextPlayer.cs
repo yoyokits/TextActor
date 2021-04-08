@@ -24,6 +24,11 @@
         #region Properties
 
         /// <summary>
+        /// Gets the DefaultTestText.
+        /// </summary>
+        public static string DefaultTestText { get; } = "Hello, you are using Text Actor voice test";
+
+        /// <summary>
         /// Gets the PlayButtonImage.
         /// </summary>
         public string PlayButtonImage { get => _playButtonImage; private set => this.Set(this.PropertyChangedHandler, ref _playButtonImage, value); }

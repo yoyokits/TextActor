@@ -23,16 +23,16 @@
         /// <summary>
         /// The DeleteItemAsync.
         /// </summary>
-        /// <param name="id">The id<see cref="string"/>.</param>
+        /// <param name="id">The id<see cref="int"/>.</param>
         /// <returns>The <see cref="Task{bool}"/>.</returns>
-        Task<bool> DeleteItemAsync(string id);
+        Task<bool> DeleteItemAsync(int id);
 
         /// <summary>
         /// The GetItemAsync.
         /// </summary>
-        /// <param name="id">The id<see cref="string"/>.</param>
+        /// <param name="id">The id<see cref="int"/>.</param>
         /// <returns>The <see cref="Task{T}"/>.</returns>
-        Task<T> GetItemAsync(string id);
+        Task<T> GetItemAsync(int id);
 
         /// <summary>
         /// The GetItemsAsync.

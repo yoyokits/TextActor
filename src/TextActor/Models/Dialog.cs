@@ -1,6 +1,5 @@
 ﻿namespace TextActor.Models
 {
-    using System;
     using TextActor.Extensions;
     using TextActor.Helpers;
 
@@ -10,8 +9,6 @@
     public class Dialog : NotifyPropertyChanged
     {
         #region Fields
-
-        private string _actorId;
 
         private string _message;
 
@@ -24,7 +21,6 @@
         /// </summary>
         public Dialog()
         {
-            this.Id = Guid.NewGuid().ToString();
         }
 
         #endregion Constructors
@@ -32,19 +28,24 @@
         #region Properties
 
         /// <summary>
-        /// Gets or sets the Actor Id who play this dialogue.
+        /// Gets or sets the Actor Id who play this dialogue..
         /// </summary>
-        public string ActorId { get => _actorId; set => this.Set(this.PropertyChangedHandler, ref _actorId, value); }
+        public int ActorId { get; set; }
 
         /// <summary>
         /// Gets or sets the Id.
         /// </summary>
-        public string Id { get; set; }
+        public int Id { get; set; } = IdCounter++;
 
         /// <summary>
         /// Gets or sets the Message.
         /// </summary>
         public string Message { get => _message; set => this.Set(this.PropertyChangedHandler, ref _message, value); }
+
+        /// <summary>
+        /// Gets or sets the IdCounter.
+        /// </summary>
+        private static int IdCounter { get; set; }
 
         #endregion Properties
     }

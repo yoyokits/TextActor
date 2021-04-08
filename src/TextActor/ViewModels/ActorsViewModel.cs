@@ -5,6 +5,7 @@
     using System.Diagnostics;
     using System.Threading.Tasks;
     using System.Windows.Input;
+    using TextActor.Helpers;
     using TextActor.Models;
     using TextActor.Views;
     using Xamarin.Forms;
@@ -32,6 +33,9 @@
             ActorTapped = new Command<Actor>(OnActorSelected);
             AddActorCommand = new Command(OnAddActor);
             LoadActorsCommand = new Command(async () => await OnExecuteLoadActors());
+            PlaySelectedCommand = new Command(OnPlaySelected);
+            RemoveSelectedCommand = new Command<Actor>(OnRemoveSelected);
+            TextPlayer = new TextPlayer();
         }
 
         #endregion Constructors
@@ -59,9 +63,24 @@
         public ICommand LoadActorsCommand { get; }
 
         /// <summary>
+        /// Gets the PlaySelectedCommand.
+        /// </summary>
+        public ICommand PlaySelectedCommand { get; }
+
+        /// <summary>
+        /// Gets the RemoveSelectedCommand.
+        /// </summary>
+        public Command<Actor> RemoveSelectedCommand { get; }
+
+        /// <summary>
         /// Gets or sets the SelectedActor.
         /// </summary>
         public Actor SelectedActor { get => _selectedActor; set => this.SetProperty(ref _selectedActor, value); }
+
+        /// <summary>
+        /// Gets the TextPlayer.
+        /// </summary>
+        public TextPlayer TextPlayer { get; }
 
         #endregion Properties
 
@@ -82,6 +101,7 @@
         /// <param name="actor">The actor<see cref="Actor"/>.</param>
         private async void OnActorSelected(Actor actor)
         {
+            SelectedActor = actor;
             if (actor == null)
             {
                 return;
@@ -125,6 +145,37 @@
             {
                 IsBusy = false;
             }
+        }
+
+        /// <summary>
+        /// The OnPlaySelected.
+        /// </summary>
+        /// <param name="obj">The obj<see cref="object"/>.</param>
+        private async void OnPlaySelected(object obj)
+        {
+            if (SelectedActor == null)
+            {
+                return;
+            }
+
+            await TextPlayer.Play(TextPlayer.DefaultTestText, SelectedActor);
+        }
+
+        /// <summary>
+        /// The OnRemoveSelected.
+        /// </summary>
+        /// <param name="actor">The actor<see cref="Actor"/>.</param>
+        private async void OnRemoveSelected(Actor actor)
+        {
+            if (actor == null || Actors == null || !Actors.Contains(actor))
+            {
+                return;
+            }
+
+            this.IsBusy = true;
+            await ActorDataStore.DeleteItemAsync(actor.Id);
+            this.IsBusy = false;
+            await OnExecuteLoadActors();
         }
 
         #endregion Methods

@@ -3,8 +3,10 @@
     x:Class="TextActor.Views.ActorsPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:converters="clr-namespace:TextActor.Converters"
     xmlns:local="clr-namespace:TextActor.ViewModels"
     xmlns:model="clr-namespace:TextActor.Models"
+    xmlns:vm="clr-namespace:TextActor.ViewModels"
     Title="{Binding Title}"
     x:DataType="local:ActorsViewModel">
     <ContentPage.ToolbarItems>
@@ -24,44 +26,80 @@
             SelectionMode="None">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <StackLayout
-                        Padding="10"
-                        x:DataType="model:Actor"
-                        BackgroundColor="#FFFFFF">
-                        <Label
-                            FontSize="16"
-                            LineBreakMode="NoWrap"
-                            Style="{DynamicResource ListItemTextStyle}"
-                            Text="{Binding Name}" />
-                        <StackLayout Orientation="Horizontal">
-                            <Label
-                                FontSize="13"
-                                LineBreakMode="NoWrap"
-                                Style="{DynamicResource ListItemDetailTextStyle}"
-                                Text="Pitch: " />
-                            <Label
-                                FontSize="13"
-                                LineBreakMode="NoWrap"
-                                Style="{DynamicResource ListItemDetailTextStyle}"
-                                Text="{Binding Pitch}" />
-                            <Label
-                                FontSize="13"
-                                LineBreakMode="NoWrap"
-                                Style="{DynamicResource ListItemDetailTextStyle}"
-                                Text="Volume: " />
-                            <Label
-                                FontSize="13"
-                                LineBreakMode="NoWrap"
-                                Style="{DynamicResource ListItemDetailTextStyle}"
-                                Text="{Binding Volume}" />
+                    <ContentView
+                        x:Name="DialogDetailItemControl"
+                        Padding="4,2,4,2"
+                        x:DataType="model:Actor">
+                        <StackLayout
+                            Padding="10"
+                            x:DataType="model:Actor"
+                            BackgroundColor="#FFFFFF">
+                            <Grid>
+                                <Label
+                                    FontAttributes="Bold"
+                                    FontSize="16"
+                                    HorizontalOptions="Start"
+                                    LineBreakMode="NoWrap"
+                                    Style="{DynamicResource ListItemTextStyle}"
+                                    Text="{Binding Name}"
+                                    TextColor="Black" />
+                                <StackLayout HorizontalOptions="End" Orientation="Horizontal">
+                                    <Button
+                                        Command="{Binding Source={RelativeSource AncestorType={x:Type vm:StoryViewModel}}, Path=RemoveSelectedCommand}"
+                                        CommandParameter="{Binding}"
+                                        HeightRequest="34"
+                                        ImageSource="clear.png"
+                                        IsVisible="{Binding IsProtected, Converter={x:Static converters:InverseBoolConverter}}"
+                                        WidthRequest="34" />
+                                    <Button
+                                        Command="{Binding Source={RelativeSource AncestorType={x:Type vm:ActorsViewModel}}, Path=PlaySelectedCommand}"
+                                        HeightRequest="34"
+                                        ImageSource="{Binding Source={RelativeSource AncestorType={x:Type vm:ActorsViewModel}}, Path=TextPlayer.PlayButtonImage}"
+                                        WidthRequest="34" />
+                                </StackLayout>
+                            </Grid>
+                            <StackLayout Orientation="Horizontal">
+                                <Label
+                                    FontSize="Medium"
+                                    LineBreakMode="NoWrap"
+                                    Style="{DynamicResource ListItemDetailTextStyle}"
+                                    Text="Language: " />
+                                <Label
+                                    FontSize="Medium"
+                                    LineBreakMode="NoWrap"
+                                    Style="{DynamicResource ListItemDetailTextStyle}"
+                                    Text="{Binding LocaleName}" />
+                            </StackLayout>
+                            <StackLayout Orientation="Horizontal">
+                                <Label
+                                    FontSize="Medium"
+                                    LineBreakMode="NoWrap"
+                                    Style="{DynamicResource ListItemDetailTextStyle}"
+                                    Text="Pitch: " />
+                                <Label
+                                    FontSize="Medium"
+                                    LineBreakMode="NoWrap"
+                                    Style="{DynamicResource ListItemDetailTextStyle}"
+                                    Text="{Binding Pitch, StringFormat='{}{0:0.##}'}" />
+                                <Label
+                                    FontSize="Medium"
+                                    LineBreakMode="NoWrap"
+                                    Style="{DynamicResource ListItemDetailTextStyle}"
+                                    Text="Volume: " />
+                                <Label
+                                    FontSize="Medium"
+                                    LineBreakMode="NoWrap"
+                                    Style="{DynamicResource ListItemDetailTextStyle}"
+                                    Text="{Binding Volume, StringFormat='{}{0:0.##}'}" />
+                            </StackLayout>
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer
+                                    Command="{Binding Source={RelativeSource AncestorType={x:Type local:ActorsViewModel}}, Path=ActorTapped}"
+                                    CommandParameter="{Binding .}"
+                                    NumberOfTapsRequired="1" />
+                            </StackLayout.GestureRecognizers>
                         </StackLayout>
-                        <StackLayout.GestureRecognizers>
-                            <TapGestureRecognizer
-                                Command="{Binding Source={RelativeSource AncestorType={x:Type local:ActorsViewModel}}, Path=ActorTapped}"
-                                CommandParameter="{Binding .}"
-                                NumberOfTapsRequired="1" />
-                        </StackLayout.GestureRecognizers>
-                    </StackLayout>
+                    </ContentView>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>

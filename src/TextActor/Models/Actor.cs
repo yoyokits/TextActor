@@ -1,6 +1,6 @@
 ﻿namespace TextActor.Models
 {
-    using System;
+    using SQLite;
     using TextActor.Extensions;
     using TextActor.Helpers;
 
@@ -11,9 +11,7 @@
     {
         #region Fields
 
-        private string _id;
-
-        private string _localeName = "English(United States)";
+        private string _localeName;
 
         private string _name;
 
@@ -30,7 +28,7 @@
         /// </summary>
         public Actor()
         {
-            this.Id = Guid.NewGuid().ToString();
+            this.LocaleName = TextToSpeechHelper.DefaultLocaleName;
         }
 
         #endregion Constructors
@@ -40,7 +38,13 @@
         /// <summary>
         /// Gets or sets the Id.
         /// </summary>
-        public string Id { get => _id; set => this.Set(this.PropertyChangedHandler, ref _id, value); }
+        [PrimaryKey, AutoIncrement]
+        public int Id { get; set; } = IdCounter++;
+
+        /// <summary>
+        /// Gets or sets a value indicating whether IsProtected.
+        /// </summary>
+        public bool IsProtected { get; set; }
 
         /// <summary>
         /// Gets or sets the LocaleName.
@@ -61,6 +65,11 @@
         /// Gets or sets the Volume.
         /// </summary>
         public float Volume { get => _volume; set => this.Set(this.PropertyChangedHandler, ref _volume, value); }
+
+        /// <summary>
+        /// Gets or sets the IdCounter.
+        /// </summary>
+        private static int IdCounter { get; set; }
 
         #endregion Properties
     }
