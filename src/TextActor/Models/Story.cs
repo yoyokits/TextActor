@@ -6,7 +6,7 @@
     /// <summary>
     /// Defines the <see cref="Story" />.
     /// </summary>
-    public class Story
+    public class Story : IIdentifiable
     {
         #region Constructors
 
@@ -21,6 +21,11 @@
         #endregion Constructors
 
         #region Properties
+
+        /// <summary>
+        /// Gets or sets the Played Actors in Json...
+        /// </summary>
+        public string ActorsJson { get; set; }
 
         /// <summary>
         /// Gets or sets the Date.
@@ -39,9 +44,9 @@
         public int Id { get; set; }
 
         /// <summary>
-        /// Gets or sets the Title.
+        /// Gets or sets the Name.
         /// </summary>
-        public string Title { get; set; }
+        public string Name { get; set; }
 
         #endregion Properties
     }

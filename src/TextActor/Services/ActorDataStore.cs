@@ -13,6 +13,8 @@
     {
         #region Constructors
 
+        public static Actor DefaultActor { get; private set; }
+
         /// <summary>
         /// Initializes a new instance of the <see cref="ActorDataStore"/> class.
         /// </summary>
@@ -24,6 +26,8 @@
                 new Actor { Id=1, IsProtected= true, Name = "Olga", Pitch=0.7f, Volume=0.8f, LocaleName="Russian (Russia)" },
                 new Actor { Id=2, IsProtected= true, Name = "Indira", Pitch=0.7f, Volume=0.8f , LocaleName="Hindi (India)"},
             };
+
+            DefaultActor = Actors.First();
         }
 
         #endregion Constructors
@@ -77,8 +81,8 @@
         /// The GetItemsAsync.
         /// </summary>
         /// <param name="forceRefresh">The forceRefresh<see cref="bool"/>.</param>
-        /// <returns>The <see cref="Task{IEnumerable{Actor}}"/>.</returns>
-        public async Task<IEnumerable<Actor>> GetItemsAsync(bool forceRefresh = false)
+        /// <returns>The <see cref="Task{IList{Actor}}"/>.</returns>
+        public async Task<IList<Actor>> GetItemsAsync(bool forceRefresh = false)
         {
             return await Task.FromResult(Actors);
         }

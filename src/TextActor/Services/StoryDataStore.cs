@@ -20,8 +20,8 @@
         {
             Stories = new List<Story>()
             {
-                new Story { Id=0, Title = "Meet Friend on Beach", Date=DateTime.Now, DialogsJson = string.Empty},
-                new Story { Id=0, Title = "Birthday Party", Date=DateTime.Now, DialogsJson = string.Empty}
+                new Story { Id=0, Name = "Meet Friend on Beach", Date=DateTime.Now, DialogsJson = string.Empty},
+                new Story { Id=0, Name = "Birthday Party", Date=DateTime.Now, DialogsJson = string.Empty}
             };
         }
 
@@ -76,8 +76,8 @@
         /// The GetItemsAsync.
         /// </summary>
         /// <param name="forceRefresh">The forceRefresh<see cref="bool"/>.</param>
-        /// <returns>The <see cref="Task{IEnumerable{Story}}"/>.</returns>
-        public async Task<IEnumerable<Story>> GetItemsAsync(bool forceRefresh = false)
+        /// <returns>The <see cref="Task{IList{Story}}"/>.</returns>
+        public async Task<IList<Story>> GetItemsAsync(bool forceRefresh = false)
         {
             return await Task.FromResult(Stories);
         }

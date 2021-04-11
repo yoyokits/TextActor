@@ -30,18 +30,18 @@ namespace TextActor.ViewModels
             AddItemCommand = new Command(OnAddItem);
         }
 
-        async Task ExecuteLoadItemsCommand()
+        private async Task ExecuteLoadItemsCommand()
         {
             IsBusy = true;
 
             try
             {
                 Items.Clear();
-                var items = await DataStore.GetItemsAsync(true);
-                foreach (var item in items)
-                {
-                    Items.Add(item);
-                }
+                ////var items = await DataStore.GetItemsAsync(true);
+                ////foreach (var item in items)
+                ////{
+                ////    Items.Add(item);
+                ////}
             }
             catch (Exception ex)
             {
@@ -74,7 +74,7 @@ namespace TextActor.ViewModels
             await Shell.Current.GoToAsync(nameof(NewItemPage));
         }
 
-        async void OnItemSelected(Item item)
+        private async void OnItemSelected(Item item)
         {
             if (item == null)
                 return;

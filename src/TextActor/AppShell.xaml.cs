@@ -19,6 +19,8 @@
             Routing.RegisterRoute(nameof(ActorDetailPage), typeof(ActorDetailPage));
             Routing.RegisterRoute(nameof(NewActorPage), typeof(NewActorPage));
             Routing.RegisterRoute(nameof(NewDialogPage), typeof(NewDialogPage));
+            Routing.RegisterRoute(nameof(NewStoryPage), typeof(NewStoryPage));
+            Routing.RegisterRoute(nameof(StoryManagerPage), typeof(StoryManagerPage));
             Routing.RegisterRoute(nameof(ItemDetailPage), typeof(ItemDetailPage));
             Routing.RegisterRoute(nameof(NewItemPage), typeof(NewItemPage));
         }

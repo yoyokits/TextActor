@@ -1,13 +1,14 @@
 ﻿namespace TextActor.Models
 {
     using SQLite;
+    using System;
     using TextActor.Extensions;
     using TextActor.Helpers;
 
     /// <summary>
     /// Defines the <see cref="Actor" />.
     /// </summary>
-    public class Actor : NotifyPropertyChanged
+    public class Actor : NotifyPropertyChanged, IIdentifiable, IEquatable<Actor>
     {
         #region Fields
 
@@ -72,5 +73,53 @@
         private static int IdCounter { get; set; }
 
         #endregion Properties
+
+        #region Methods
+
+        /// <summary>
+        /// The Equals.
+        /// </summary>
+        /// <param name="other">The other<see cref="Actor"/>.</param>
+        /// <returns>The <see cref="bool"/>.</returns>
+        public bool Equals(Actor other)
+        {
+            var isEqual = this.Id == other.Id && this.IsProtected == other.IsProtected && this.LocaleName == other.LocaleName && this.Name == other.Name && this.Pitch == other.Pitch && this.Volume == other.Volume;
+            return isEqual;
+        }
+
+        /// <summary>
+        /// The Equals.
+        /// </summary>
+        /// <param name="obj">The obj<see cref="object"/>.</param>
+        /// <returns>The <see cref="bool"/>.</returns>
+        public override bool Equals(object obj)
+        {
+            var actor = obj as Actor;
+            if (null == actor)
+            {
+                return false;
+            }
+
+            return this.Equals(actor);
+        }
+
+        /// <summary>
+        /// The GetHashCode.
+        /// </summary>
+        /// <returns>The <see cref="int"/>.</returns>
+        public override int GetHashCode()
+        {
+            unchecked
+            {
+                var hashCode = 31;
+                hashCode = hashCode * 31 ^ this.LocaleName.GetHashCode();
+                hashCode = hashCode * 31 ^ this.Name.GetHashCode();
+                hashCode = hashCode * 31 ^ this.Pitch.GetHashCode();
+                hashCode = hashCode * 31 ^ this.Volume.GetHashCode();
+                return hashCode;
+            }
+        }
+
+        #endregion Methods
     }
 }

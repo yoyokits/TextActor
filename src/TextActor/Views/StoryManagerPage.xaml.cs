@@ -5,21 +5,21 @@
     using Xamarin.Forms.Xaml;
 
     /// <summary>
-    /// Defines the <see cref="StoryPage" />.
+    /// Defines the <see cref="StoryManagerPage" />.
     /// </summary>
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class StoryPage : ContentPage
+    public partial class StoryManagerPage : ContentPage
     {
         #region Constructors
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="StoryPage"/> class.
+        /// Initializes a new instance of the <see cref="StoryManagerPage"/> class.
         /// </summary>
-        public StoryPage()
+        public StoryManagerPage()
         {
             InitializeComponent();
 
-            BindingContext = ViewModel = new StoryViewModel();
+            BindingContext = ViewModel = new StoryManagerViewModel();
         }
 
         #endregion Constructors
@@ -29,7 +29,7 @@
         /// <summary>
         /// Gets the ViewModel.
         /// </summary>
-        protected StoryViewModel ViewModel { get; }
+        public StoryManagerViewModel ViewModel { get; }
 
         #endregion Properties
 

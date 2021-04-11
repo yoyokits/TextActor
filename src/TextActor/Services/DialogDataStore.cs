@@ -78,8 +78,8 @@
         /// The GetItemsAsync.
         /// </summary>
         /// <param name="forceRefresh">The forceRefresh<see cref="bool"/>.</param>
-        /// <returns>The <see cref="Task{IEnumerable{Dialog}}"/>.</returns>
-        public async Task<IEnumerable<Dialog>> GetItemsAsync(bool forceRefresh = false)
+        /// <returns>The <see cref="Task{IList{Dialog}}"/>.</returns>
+        public async Task<IList<Dialog>> GetItemsAsync(bool forceRefresh = false)
         {
             return await Task.FromResult(Dialogs);
         }

@@ -1,13 +1,14 @@
 ﻿namespace TextActor.ViewModels
 {
     using System;
-    using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using System.Diagnostics;
     using System.Linq;
     using System.Threading;
     using System.Threading.Tasks;
     using System.Windows.Input;
+    using TextActor.Converters;
+    using TextActor.Extensions;
     using TextActor.Helpers;
     using TextActor.Models;
     using TextActor.Views;
@@ -16,15 +17,20 @@
     /// <summary>
     /// Defines the <see cref="StoryViewModel" />.
     /// </summary>
-    public class StoryViewModel : BaseViewModel
+    [QueryProperty(nameof(Id), nameof(Id))]
+    public class StoryViewModel : BaseViewModel, ISelectable
     {
         #region Fields
 
         private bool _isPlaying;
 
+        private bool _isSelected;
+
         private string _playButtonImage = "media_play.png";
 
         private DialogDetailViewModel _selectedDialog;
+
+        private string _storyTitle;
 
         #endregion Fields
 
@@ -41,6 +47,8 @@
             AddDialogCommand = new Command(OnAddDialog);
             ClearDialogCommand = new Command(OnClearDialogs);
             LoadDialogsCommand = new Command(async () => await OnExecuteLoadDialogs());
+            NewStoryCommand = new Command(OnNewStory);
+            OpenStoryManagerCommand = new Command(OnOpenStoryManager);
             PlayCommand = new Command(OnPlay);
             PlaySelectedCommand = new Command<DialogDetailViewModel>(OnPlaySelected);
             RemoveSelectedCommand = new Command<DialogDetailViewModel>(OnRemoveSelected);
@@ -62,6 +70,11 @@
         public ICommand ClearDialogCommand { get; }
 
         /// <summary>
+        /// Gets or sets the Date.
+        /// </summary>
+        public DateTime Date { get; set; } = DateTime.Now;
+
+        /// <summary>
         /// Gets the DialogDetails.
         /// </summary>
         public ObservableCollection<DialogDetailViewModel> DialogDetails { get; }
@@ -72,9 +85,34 @@
         public Command<DialogDetailViewModel> DialogTapped { get; }
 
         /// <summary>
+        /// Gets or sets the Id.
+        /// </summary>
+        public int Id { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether IsNewItemMode.
+        /// </summary>
+        public bool IsNewItemMode { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether IsSelected.
+        /// </summary>
+        public bool IsSelected { get => _isSelected; set => SetProperty(ref _isSelected, value); }
+
+        /// <summary>
         /// Gets the LoadDialogsCommand.
         /// </summary>
         public ICommand LoadDialogsCommand { get; }
+
+        /// <summary>
+        /// Gets the NewStoryCommand.
+        /// </summary>
+        public ICommand NewStoryCommand { get; }
+
+        /// <summary>
+        /// Gets the OpenStoryManagerCommand.
+        /// </summary>
+        public ICommand OpenStoryManagerCommand { get; }
 
         /// <summary>
         /// Gets the PlayButtonImage.
@@ -100,6 +138,11 @@
         /// Gets or sets the SelectedDialog.
         /// </summary>
         public DialogDetailViewModel SelectedDialog { get => _selectedDialog; set => this.SetProperty(ref _selectedDialog, value); }
+
+        /// <summary>
+        /// Gets or sets the StoryTitle.
+        /// </summary>
+        public string StoryTitle { get => _storyTitle; set => this.SetProperty(ref _storyTitle, value); }
 
         /// <summary>
         /// Gets the TextPlayer.
@@ -143,22 +186,6 @@
         }
 
         /// <summary>
-        /// The UnselectAll.
-        /// </summary>
-        /// <param name="items">The items<see cref="IEnumerable{DialogDetailViewModel}"/>.</param>
-        /// <returns>The <see cref="Task"/>.</returns>
-        public async Task UnselectAll(IEnumerable<DialogDetailViewModel> items)
-        {
-            await Task.Run(() =>
-            {
-                foreach (var item in items)
-                {
-                    item.IsSelected = false;
-                }
-            });
-        }
-
-        /// <summary>
         /// The OnAddDialog.
         /// </summary>
         /// <param name="obj">The obj<see cref="object"/>.</param>
@@ -191,13 +218,10 @@
         /// The OnDialogSelected.
         /// </summary>
         /// <param name="dialogDetail">The obj<see cref="Dialog"/>.</param>
-        private void OnDialogSelected(DialogDetailViewModel dialogDetail)
+        private async void OnDialogSelected(DialogDetailViewModel dialogDetail)
         {
             SelectedDialog = dialogDetail;
-            foreach (var dialog in DialogDetails)
-            {
-                dialog.IsSelected = false;
-            }
+            await DialogDetails.UnselectAll();
 
             if (SelectedDialog == null)
             {
@@ -243,6 +267,28 @@
                 IsBusy = false;
             }
         }
+
+        /// <summary>
+        /// The OnNewStory.
+        /// </summary>
+        /// <param name="obj">The obj<see cref="object"/>.</param>
+        private async void OnNewStory(object obj)
+        {
+            var isStoryValid = await ValidateStory();
+            if (!isStoryValid)
+            {
+                return;
+            }
+
+            var story = await this.ToStory();
+            await StoryDataStore.AddItemAsync(story);
+        }
+
+        /// <summary>
+        /// The OnOpenStoryManager.
+        /// </summary>
+        /// <param name="obj">The obj<see cref="object"/>.</param>
+        private async void OnOpenStoryManager(object obj) => await Shell.Current.GoToAsync(nameof(StoryManagerPage));
 
         /// <summary>
         /// The OnPlay.
@@ -314,13 +360,40 @@
                 while (this.IsPlaying && !token.IsCancellationRequested && index < dialogsCopy.Count)
                 {
                     var dialog = dialogsCopy[index++];
-                    await UnselectAll(DialogDetails);
+                    await DialogDetails.UnselectAll();
                     dialog.IsSelected = true;
                     await TextPlayer.Play(dialog.Message, dialog.SelectedActor);
                 }
 
                 this.IsPlaying = false;
             }, token);
+        }
+
+        /// <summary>
+        /// The ValidateStory.
+        /// </summary>
+        /// <returns>The <see cref="bool"/>.</returns>
+        private async Task<bool> ValidateStory()
+        {
+            if (string.IsNullOrWhiteSpace(this.StoryTitle))
+            {
+                return false;
+            }
+
+            var isValid = true;
+            await Task.Run(() =>
+            {
+                foreach (var dialog in DialogDetails)
+                {
+                    if (!dialog.ValidateDialog())
+                    {
+                        isValid = false;
+                        return;
+                    }
+                }
+            });
+
+            return isValid;
         }
 
         #endregion Methods

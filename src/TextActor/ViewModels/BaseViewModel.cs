@@ -38,11 +38,6 @@
         public IDataStore<Actor> ActorDataStore => DependencyService.Get<IDataStore<Actor>>();
 
         /// <summary>
-        /// Gets the DataStore.
-        /// </summary>
-        public IDataStore<Item> DataStore => DependencyService.Get<IDataStore<Item>>();
-
-        /// <summary>
         /// Gets the DialogDataStore.
         /// </summary>
         public IDataStore<Dialog> DialogDataStore => DependencyService.Get<IDataStore<Dialog>>();
@@ -50,20 +45,17 @@
         /// <summary>
         /// Gets or sets a value indicating whether IsBusy.
         /// </summary>
-        public bool IsBusy
-        {
-            get { return _isBusy; }
-            set { SetProperty(ref _isBusy, value); }
-        }
+        public bool IsBusy { get => _isBusy; set => SetProperty(ref _isBusy, value); }
+
+        /// <summary>
+        /// Gets the StoryDataStore.
+        /// </summary>
+        public IDataStore<Story> StoryDataStore => DependencyService.Get<IDataStore<Story>>();
 
         /// <summary>
         /// Gets or sets the Title.
         /// </summary>
-        public string Title
-        {
-            get { return _title; }
-            set { SetProperty(ref _title, value); }
-        }
+        public string Title { get => _title; set => SetProperty(ref _title, value); }
 
         #endregion Properties
 

@@ -105,13 +105,25 @@
     <AndroidResource Include="Resources\drawable\add_chat.png" />
   </ItemGroup>
   <ItemGroup>
+    <AndroidResource Include="Resources\drawable\add_new.png" />
+  </ItemGroup>
+  <ItemGroup>
     <AndroidResource Include="Resources\drawable\chat.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\clear.png" />
   </ItemGroup>
   <ItemGroup>
+    <AndroidResource Include="Resources\drawable\edit.png" />
+  </ItemGroup>
+  <ItemGroup>
     <AndroidResource Include="Resources\drawable\female.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\folders.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\ok.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\male.png" />
@@ -130,6 +142,9 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\read.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\remove.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\save.png" />

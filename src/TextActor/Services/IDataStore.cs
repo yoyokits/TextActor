@@ -39,7 +39,7 @@
         /// </summary>
         /// <param name="forceRefresh">The forceRefresh<see cref="bool"/>.</param>
         /// <returns>The <see cref="Task{IEnumerable{T}}"/>.</returns>
-        Task<IEnumerable<T>> GetItemsAsync(bool forceRefresh = false);
+        Task<IList<T>> GetItemsAsync(bool forceRefresh = false);
 
         /// <summary>
         /// The UpdateItemAsync.

@@ -13,7 +13,7 @@
     /// Defines the <see cref="DialogDetailViewModel" />.
     /// </summary>
     [QueryProperty(nameof(Id), nameof(Id))]
-    public class DialogDetailViewModel : BaseViewModel
+    public class DialogDetailViewModel : BaseViewModel, ISelectable
     {
         #region Fields
 
@@ -107,6 +107,16 @@
         #endregion Properties
 
         #region Methods
+
+        /// <summary>
+        /// The ValidateDialog.
+        /// </summary>
+        /// <returns>The <see cref="bool"/>.</returns>
+        public bool ValidateDialog()
+        {
+            var isValid = SelectedActor != null && !string.IsNullOrWhiteSpace(Message);
+            return isValid;
+        }
 
         /// <summary>
         /// The LoadDialogId.
