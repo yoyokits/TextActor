@@ -1,6 +1,5 @@
 ﻿namespace TextActor.Views
 {
-    using TextActor.ViewModels;
     using Xamarin.Forms;
     using Xamarin.Forms.Xaml;
 
@@ -10,12 +9,6 @@
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ActorsPage : ContentPage
     {
-        #region Fields
-
-        internal ActorsViewModel _viewModel;
-
-        #endregion Fields
-
         #region Constructors
 
         /// <summary>
@@ -24,23 +17,8 @@
         public ActorsPage()
         {
             InitializeComponent();
-
-            BindingContext = _viewModel = new ActorsViewModel();
         }
 
         #endregion Constructors
-
-        #region Methods
-
-        /// <summary>
-        /// The OnAppearing.
-        /// </summary>
-        protected override void OnAppearing()
-        {
-            base.OnAppearing();
-            _viewModel.OnAppearing();
-        }
-
-        #endregion Methods
     }
 }

@@ -10,7 +10,7 @@
     /// <summary>
     /// Defines the <see cref="TextPlayerViewModel" />.
     /// </summary>
-    public class TextPlayerViewModel : BaseViewModel
+    public class TextPlayerViewModel : BaseViewModel, IVisibilityChangedNotifiable
     {
         #region Fields
 
@@ -118,6 +118,25 @@
         #endregion Properties
 
         #region Methods
+
+        /// <summary>
+        /// The OnAppearing.
+        /// </summary>
+        /// <param name="obj">The obj<see cref="object"/>.</param>
+        public async void OnAppearing(object obj)
+        {
+            var settings = await App.Database.GetSettingsAsync();
+            this.Text = settings.TextPlayerText;
+        }
+
+        /// <summary>
+        /// The OnDisappearing.
+        /// </summary>
+        /// <param name="obj">The obj<see cref="object"/>.</param>
+        public async void OnDisappearing(object obj)
+        {
+            await App.Database.UpdateSettingsAsync((settings) => settings.TextPlayerText = this.Text);
+        }
 
         /// <summary>
         /// The PlayAsync.

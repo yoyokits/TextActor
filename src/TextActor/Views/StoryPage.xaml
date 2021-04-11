@@ -5,10 +5,15 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:controls="clr-namespace:TextActor.Controls"
     xmlns:converters="clr-namespace:TextActor.Converters"
+    xmlns:extensions="clr-namespace:TextActor.Extensions"
     xmlns:vm="clr-namespace:TextActor.ViewModels"
     x:Name="StoryPageRoot"
     Title="{Binding Title}"
+    extensions:VisibilityChangeExtension.NotifyVisibilityChanged="True"
     x:DataType="vm:StoryViewModel">
+    <ContentPage.BindingContext>
+        <vm:StoryViewModel />
+    </ContentPage.BindingContext>
     <ContentPage.ToolbarItems>
         <ToolbarItem
             Command="{Binding OpenStoryManagerCommand}"

@@ -12,7 +12,7 @@
     /// <summary>
     /// Defines the <see cref="StoryManagerViewModel" />.
     /// </summary>
-    public class StoryManagerViewModel : BaseViewModel
+    public class StoryManagerViewModel : BaseViewModel, IVisibilityChangedNotifiable
     {
         #region Fields
 
@@ -38,18 +38,6 @@
             TextPlayer = new TextPlayer();
         }
 
-        private async void OnEditSelectedAsync(StoryViewModel story)
-        {
-            SelectedItem = story;
-            if (SelectedItem == null)
-            {
-                return;
-            }
-
-            // This will push the ActorDetailPage onto the navigation stack
-            await Shell.Current.GoToAsync($"{nameof(StoryPage)}?{nameof(StoryViewModel.Id)}={SelectedItem.Id}");
-        }
-
         #endregion Constructors
 
         #region Properties
@@ -59,6 +47,9 @@
         /// </summary>
         public Command AddCommand { get; }
 
+        /// <summary>
+        /// Gets the EditSelectedCommand.
+        /// </summary>
         public Command EditSelectedCommand { get; }
 
         /// <summary>
@@ -113,10 +104,19 @@
         /// <summary>
         /// The OnAppearing.
         /// </summary>
-        public void OnAppearing()
+        /// <param name="obj">The obj<see cref="object"/>.</param>
+        public void OnAppearing(object obj)
         {
             IsBusy = true;
             SelectedItem = null;
+        }
+
+        /// <summary>
+        /// The OnDisappearing.
+        /// </summary>
+        /// <param name="obj">The obj<see cref="object"/>.</param>
+        public void OnDisappearing(object obj)
+        {
         }
 
         /// <summary>
@@ -124,6 +124,22 @@
         /// </summary>
         /// <param name="story">The story<see cref="object"/>.</param>
         private async void OnAddAsync(object story) => await Shell.Current.GoToAsync(nameof(NewDialogPage));
+
+        /// <summary>
+        /// The OnEditSelectedAsync.
+        /// </summary>
+        /// <param name="story">The story<see cref="StoryViewModel"/>.</param>
+        private async void OnEditSelectedAsync(StoryViewModel story)
+        {
+            SelectedItem = story;
+            if (SelectedItem == null)
+            {
+                return;
+            }
+
+            // This will push the ActorDetailPage onto the navigation stack
+            await Shell.Current.GoToAsync($"{nameof(StoryPage)}?{nameof(StoryViewModel.Id)}={SelectedItem.Id}");
+        }
 
         /// <summary>
         /// The OnExecuteLoad.

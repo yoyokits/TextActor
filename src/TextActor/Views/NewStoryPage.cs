@@ -1,5 +1,7 @@
 ﻿namespace TextActor.Views
 {
+    using TextActor.ViewModels;
+
     /// <summary>
     /// Defines the <see cref="NewStoryPage" />.
     /// </summary>
@@ -12,7 +14,7 @@
         /// </summary>
         public NewStoryPage()
         {
-            ViewModel.IsNewItemMode = true;
+            ((StoryViewModel)BindingContext).IsNewItemMode = true;
         }
 
         #endregion Constructors

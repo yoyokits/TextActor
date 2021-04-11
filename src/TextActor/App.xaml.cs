@@ -1,5 +1,7 @@
 ﻿namespace TextActor
 {
+    using System;
+    using System.IO;
     using TextActor.Helpers;
     using TextActor.Services;
     using Xamarin.Forms;
@@ -9,6 +11,12 @@
     /// </summary>
     public partial class App : Application
     {
+        #region Fields
+
+        private static TextActorDataBase _database;
+
+        #endregion Fields
+
         #region Constructors
 
         /// <summary>
@@ -26,6 +34,27 @@
         }
 
         #endregion Constructors
+
+        #region Properties
+
+        // Create the database connection as a singleton.
+        /// <summary>
+        /// Gets the Database.
+        /// </summary>
+        public static TextActorDataBase Database
+        {
+            get
+            {
+                if (_database == null)
+                {
+                    _database = new TextActorDataBase(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "TextActor.db3"));
+                }
+
+                return _database;
+            }
+        }
+
+        #endregion Properties
 
         #region Methods
 

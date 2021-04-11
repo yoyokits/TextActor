@@ -18,7 +18,7 @@
     /// Defines the <see cref="StoryViewModel" />.
     /// </summary>
     [QueryProperty(nameof(Id), nameof(Id))]
-    public class StoryViewModel : BaseViewModel, ISelectable
+    public class StoryViewModel : BaseViewModel, ISelectable, IVisibilityChangedNotifiable
     {
         #region Fields
 
@@ -179,10 +179,19 @@
         /// <summary>
         /// The OnAppearing.
         /// </summary>
-        public void OnAppearing()
+        /// <param name="obj">The obj<see cref="object"/>.</param>
+        public void OnAppearing(object obj)
         {
             IsBusy = true;
             SelectedDialog = null;
+        }
+
+        /// <summary>
+        /// The OnDisappearing.
+        /// </summary>
+        /// <param name="obj">The obj<see cref="object"/>.</param>
+        public void OnDisappearing(object obj)
+        {
         }
 
         /// <summary>

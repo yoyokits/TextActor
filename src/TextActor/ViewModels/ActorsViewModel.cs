@@ -13,7 +13,7 @@
     /// <summary>
     /// Defines the <see cref="ActorsViewModel" />.
     /// </summary>
-    public class ActorsViewModel : BaseViewModel
+    public class ActorsViewModel : BaseViewModel, IVisibilityChangedNotifiable
     {
         #region Fields
 
@@ -89,10 +89,19 @@
         /// <summary>
         /// The OnAppearing.
         /// </summary>
-        public void OnAppearing()
+        /// <param name="obj">The obj<see cref="object"/>.</param>
+        public void OnAppearing(object obj)
         {
             IsBusy = true;
             SelectedActor = null;
+        }
+
+        /// <summary>
+        /// The OnDisappearing.
+        /// </summary>
+        /// <param name="obj">The obj<see cref="object"/>.</param>
+        public void OnDisappearing(object obj)
+        {
         }
 
         /// <summary>

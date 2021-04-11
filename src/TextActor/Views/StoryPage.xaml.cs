@@ -1,6 +1,5 @@
 ﻿namespace TextActor.Views
 {
-    using TextActor.ViewModels;
     using Xamarin.Forms;
     using Xamarin.Forms.Xaml;
 
@@ -18,32 +17,8 @@
         public StoryPage()
         {
             InitializeComponent();
-
-            BindingContext = ViewModel = new StoryViewModel();
         }
 
         #endregion Constructors
-
-        #region Properties
-
-        /// <summary>
-        /// Gets the ViewModel.
-        /// </summary>
-        protected StoryViewModel ViewModel { get; }
-
-        #endregion Properties
-
-        #region Methods
-
-        /// <summary>
-        /// The OnAppearing.
-        /// </summary>
-        protected override void OnAppearing()
-        {
-            base.OnAppearing();
-            ViewModel.OnAppearing();
-        }
-
-        #endregion Methods
     }
 }
