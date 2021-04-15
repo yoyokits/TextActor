@@ -39,7 +39,7 @@
         {
             var dialogs = await storyViewModel.DialogDataStore.GetItemsAsync();
             var playedActorIds = dialogs.Select(dialog => dialog.ActorId).Distinct();
-            var availableActors = await storyViewModel.ActorDataStore.GetItemsAsync();
+            var availableActors = await App.Database.GetActorsAsync();
             if (availableActors == null || !availableActors.Any())
             {
                 return null;
@@ -90,7 +90,7 @@
                 return;
             }
 
-            var defaultActor = ActorDataStore.DefaultActor;
+            var defaultActor = TextActorDataBase.DefaultActor;
             var defaultActorIndex = availableActors.IndexOf(defaultActor);
             var dialogDetails = new List<DialogDetailViewModel>();
             if (playedActors == null || !playedActors.Any())

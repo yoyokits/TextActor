@@ -3,6 +3,7 @@
     using System;
     using System.Collections.ObjectModel;
     using System.Diagnostics;
+    using System.Linq;
     using System.Threading.Tasks;
     using System.Windows.Input;
     using TextActor.Helpers;
@@ -100,8 +101,16 @@
         /// The OnDisappearing.
         /// </summary>
         /// <param name="obj">The obj<see cref="object"/>.</param>
-        public void OnDisappearing(object obj)
+        public async void OnDisappearing(object obj)
         {
+            await Task.Run(async () =>
+            {
+                var actorList = Actors.ToList();
+                foreach (var actor in actorList)
+                {
+                    await App.Database.SaveActorAsync(actor);
+                }
+            });
         }
 
         /// <summary>
@@ -117,7 +126,7 @@
             }
 
             // This will push the ActorDetailPage onto the navigation stack
-            await Shell.Current.GoToAsync($"{nameof(ActorDetailPage)}?{nameof(ActorDetailViewModel.Id)}={actor.Id}");
+            await Shell.Current.GoToAsync($"{nameof(ActorPage)}?{nameof(ActorViewModel.Id)}={actor.Id}");
         }
 
         /// <summary>
@@ -126,7 +135,7 @@
         /// <param name="obj">The obj<see cref="object"/>.</param>
         private async void OnAddActor(object obj)
         {
-            await Shell.Current.GoToAsync(nameof(NewActorPage));
+            await Shell.Current.GoToAsync(nameof(ActorPage));
         }
 
         /// <summary>
@@ -140,7 +149,7 @@
             try
             {
                 Actors.Clear();
-                var items = await ActorDataStore.GetItemsAsync(true);
+                var items = await App.Database.GetActorsAsync();
                 foreach (var item in items)
                 {
                     Actors.Add(item);
@@ -182,9 +191,8 @@
             }
 
             this.IsBusy = true;
-            await ActorDataStore.DeleteItemAsync(actor.Id);
+            await App.Database.DeleteActorAsync(actor);
             this.IsBusy = false;
-            await OnExecuteLoadActors();
         }
 
         #endregion Methods

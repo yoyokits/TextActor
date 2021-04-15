@@ -90,7 +90,7 @@
         /// </summary>
         private async void Initialize()
         {
-            var actors = await ActorDataStore.GetItemsAsync();
+            var actors = await App.Database.GetActorsAsync();
             if (actors == null || !actors.Any())
             {
                 return;

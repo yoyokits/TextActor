@@ -33,11 +33,6 @@
         #region Properties
 
         /// <summary>
-        /// Gets the ActorDataStore.
-        /// </summary>
-        public IDataStore<Actor> ActorDataStore => DependencyService.Get<IDataStore<Actor>>();
-
-        /// <summary>
         /// Gets the DialogDataStore.
         /// </summary>
         public IDataStore<Dialog> DialogDataStore => DependencyService.Get<IDataStore<Dialog>>();

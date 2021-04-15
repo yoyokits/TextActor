@@ -45,6 +45,7 @@
             DialogDetails = new ObservableCollection<DialogDetailViewModel>();
             DialogTapped = new Command<DialogDetailViewModel>(OnDialogSelected);
             AddDialogCommand = new Command(OnAddDialog);
+            CancelNewStoryCommand = new Command(OnCancelNewStory);
             ClearDialogCommand = new Command(OnClearDialogs);
             LoadDialogsCommand = new Command(async () => await OnExecuteLoadDialogs());
             NewStoryCommand = new Command(OnNewStory);
@@ -63,6 +64,11 @@
         /// Gets the AddDialogCommand.
         /// </summary>
         public ICommand AddDialogCommand { get; }
+
+        /// <summary>
+        /// Gets the CancelNewStoryCommand.
+        /// </summary>
+        public Command CancelNewStoryCommand { get; }
 
         /// <summary>
         /// Gets the ClearDialogCommand.
@@ -155,6 +161,11 @@
         private CancellationTokenSource CancellationTokenSource { get; set; }
 
         /// <summary>
+        /// Gets or sets a value indicating whether IsCancelNewStory.
+        /// </summary>
+        private bool IsCancelNewStory { get; set; }
+
+        /// <summary>
         /// Gets or sets a value indicating whether IsPlaying.
         /// </summary>
         private bool IsPlaying
@@ -183,6 +194,7 @@
         public void OnAppearing(object obj)
         {
             IsBusy = true;
+            IsCancelNewStory = false;
             SelectedDialog = null;
         }
 
@@ -192,6 +204,12 @@
         /// <param name="obj">The obj<see cref="object"/>.</param>
         public void OnDisappearing(object obj)
         {
+            if (IsCancelNewStory)
+            {
+                return;
+            }
+
+            SaveStory();
         }
 
         /// <summary>
@@ -199,6 +217,15 @@
         /// </summary>
         /// <param name="obj">The obj<see cref="object"/>.</param>
         private async void OnAddDialog(object obj) => await Shell.Current.GoToAsync(nameof(NewDialogPage));
+
+        /// <summary>
+        /// The OnCancelNewStory.
+        /// </summary>
+        /// <param name="obj">The obj<see cref="object"/>.</param>
+        private void OnCancelNewStory(object obj)
+        {
+            IsCancelNewStory = true;
+        }
 
         /// <summary>
         /// The OnClearDialogs.
@@ -252,7 +279,7 @@
             {
                 DialogDetails.Clear();
                 var items = await DialogDataStore.GetItemsAsync(true);
-                var actors = await ActorDataStore.GetItemsAsync();
+                var actors = await App.Database.GetActorsAsync();
                 if (actors == null || !actors.Any())
                 {
                     return;
@@ -376,6 +403,13 @@
 
                 this.IsPlaying = false;
             }, token);
+        }
+
+        /// <summary>
+        /// The SaveStory.
+        /// </summary>
+        private void SaveStory()
+        {
         }
 
         /// <summary>

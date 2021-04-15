@@ -4,17 +4,17 @@
     using Xamarin.Forms.Xaml;
 
     /// <summary>
-    /// Defines the <see cref="NewActorPage" />.
+    /// Defines the <see cref="ActorPage" />.
     /// </summary>
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class NewActorPage : ContentPage
+    public partial class ActorPage : ContentPage
     {
         #region Constructors
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="NewActorPage"/> class.
+        /// Initializes a new instance of the <see cref="ActorPage"/> class.
         /// </summary>
-        public NewActorPage()
+        public ActorPage()
         {
             InitializeComponent();
         }

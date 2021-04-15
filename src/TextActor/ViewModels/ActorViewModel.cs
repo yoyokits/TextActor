@@ -1,6 +1,8 @@
 ﻿namespace TextActor.ViewModels
 {
+    using System;
     using System.Collections.Generic;
+    using System.Diagnostics;
     using System.Windows.Input;
     using TextActor.Helpers;
     using TextActor.Models;
@@ -8,11 +10,16 @@
     using Xamarin.Forms;
 
     /// <summary>
-    /// Defines the <see cref="NewActorViewModel" />.
+    /// Defines the <see cref="ActorViewModel" />.
     /// </summary>
-    public class NewActorViewModel : BaseViewModel
+    [QueryProperty(nameof(Id), nameof(Id))]
+    public class ActorViewModel : BaseViewModel, IVisibilityChangedNotifiable
     {
         #region Fields
+
+        private int _id;
+
+        private bool _isNewItemMode;
 
         private IList<Locale> _locales;
 
@@ -31,10 +38,12 @@
         #region Constructors
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="NewActorViewModel"/> class.
+        /// Initializes a new instance of the <see cref="ActorViewModel"/> class.
         /// </summary>
-        public NewActorViewModel()
+        public ActorViewModel()
         {
+            Title = "Edit Actor";
+            IsNewItemMode = true;
             Locales = TextToSpeechHelper.Locales;
             Pitch = 0.8f;
             Volume = 0.7f;
@@ -43,8 +52,7 @@
             PlayCommand = new Command(OnPlay);
             CancelCommand = new Command(OnCancel);
             SaveCommand = new Command(OnSave, ValidateSave);
-            this.PropertyChanged +=
-                (_, __) => SaveCommand.ChangeCanExecute();
+            this.PropertyChanged += OnPropertyChanged;
         }
 
         #endregion Constructors
@@ -55,6 +63,35 @@
         /// Gets the CancelCommand.
         /// </summary>
         public ICommand CancelCommand { get; }
+
+        /// <summary>
+        /// Gets or sets the Id.
+        /// </summary>
+        public int Id
+        {
+            get => _id;
+            set
+            {
+                if (_id == value)
+                {
+                    return;
+                }
+
+                _id = value;
+                IsNewItemMode = false;
+                LoadActorId(Id);
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether IsNewItemMode.
+        /// </summary>
+        public bool IsNewItemMode { get => _isNewItemMode; set => SetProperty(ref _isNewItemMode, value); }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether IsProtected.
+        /// </summary>
+        public bool IsProtected { get; set; }
 
         /// <summary>
         /// Gets or sets the Locales.
@@ -106,6 +143,50 @@
         #region Methods
 
         /// <summary>
+        /// The LoadActorId.
+        /// </summary>
+        /// <param name="id">The id<see cref="int"/>.</param>
+        public async void LoadActorId(int id)
+        {
+            try
+            {
+                var actor = await App.Database.GetActorAsync(id);
+                Id = actor.Id;
+                IsProtected = actor.IsProtected;
+                Name = actor.Name;
+                Pitch = actor.Pitch;
+                Volume = actor.Volume;
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine($"Failed to Load Item: {e.Message}");
+            }
+        }
+
+        /// <summary>
+        /// The OnAppearing.
+        /// </summary>
+        /// <param name="obj">The obj<see cref="object"/>.</param>
+        public void OnAppearing(object obj)
+        {
+        }
+
+        /// <summary>
+        /// The OnDisappearing.
+        /// </summary>
+        /// <param name="obj">The obj<see cref="object"/>.</param>
+        public async void OnDisappearing(object obj)
+        {
+            if (IsNewItemMode)
+            {
+                return;
+            }
+
+            var actor = new Actor { Id = Id, Name = Name, Pitch = Pitch, Volume = Volume, LocaleName = SelectedLocale.Name };
+            await App.Database.SaveActorAsync(actor);
+        }
+
+        /// <summary>
         /// The OnCancel.
         /// </summary>
         /// <param name="obj">The obj<see cref="object"/>.</param>
@@ -124,6 +205,23 @@
         }
 
         /// <summary>
+        /// The OnPropertyChanged.
+        /// </summary>
+        /// <param name="sender">The sender<see cref="object"/>.</param>
+        /// <param name="e">The e<see cref="System.ComponentModel.PropertyChangedEventArgs"/>.</param>
+        private void OnPropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            switch (e.PropertyName)
+            {
+                case nameof(IsNewItemMode):
+                    Title = IsNewItemMode ? "New Actor" : "Edit Actor";
+                    break;
+            }
+
+            SaveCommand.ChangeCanExecute();
+        }
+
+        /// <summary>
         /// The OnSave.
         /// </summary>
         /// <param name="obj">The obj<see cref="object"/>.</param>
@@ -137,7 +235,7 @@
                 Volume = Volume
             };
 
-            await ActorDataStore.AddItemAsync(actor);
+            await App.Database.SaveActorAsync(actor);
 
             // This will pop the current page off the navigation stack
             await Shell.Current.GoToAsync("..");

@@ -50,10 +50,10 @@
                                     TextColor="Black" />
                                 <StackLayout HorizontalOptions="End" Orientation="Horizontal">
                                     <Button
-                                        Command="{Binding Source={RelativeSource AncestorType={x:Type vm:StoryViewModel}}, Path=RemoveSelectedCommand}"
+                                        Command="{Binding Source={RelativeSource AncestorType={x:Type vm:ActorsViewModel}}, Path=RemoveSelectedCommand}"
                                         CommandParameter="{Binding}"
                                         HeightRequest="34"
-                                        ImageSource="clear.png"
+                                        ImageSource="remove.png"
                                         IsVisible="{Binding IsProtected, Converter={x:Static converters:InverseBoolConverter.Instance}}"
                                         WidthRequest="34" />
                                     <Button

@@ -3,7 +3,9 @@
     using SQLite;
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using System.Threading.Tasks;
+    using TextActor.Helpers;
     using TextActor.Models;
 
     /// <summary>
@@ -29,9 +31,19 @@
             database.CreateTableAsync<Actor>().Wait();
             database.CreateTableAsync<Story>().Wait();
             database.CreateTableAsync<Settings>().Wait();
+            Initialize();
         }
 
         #endregion Constructors
+
+        #region Properties
+
+        /// <summary>
+        /// Gets the DefaultActor.
+        /// </summary>
+        public static Actor DefaultActor { get; private set; }
+
+        #endregion Properties
 
         #region Methods
 
@@ -168,6 +180,29 @@
             var settings = await GetSettingsAsync();
             settingsAction(settings);
             await database.UpdateAsync(settings);
+        }
+
+        /// <summary>
+        /// The Initialize.
+        /// </summary>
+        private async void Initialize()
+        {
+            var actors = await GetActorsAsync();
+            if (!actors.Any())
+            {
+                await SaveActorAsync(new Actor { IsProtected = true, Name = "Ivana", Pitch = 0.8f, Volume = 0.6f, LocaleName = TextToSpeechHelper.DefaultLocaleName });
+                await SaveActorAsync(new Actor { IsProtected = true, Name = "Olga", Pitch = 0.7f, Volume = 0.8f, LocaleName = "Russian (Russia)" });
+                await SaveActorAsync(new Actor { IsProtected = true, Name = "Indira", Pitch = 0.7f, Volume = 0.8f, LocaleName = "Hindi (India)" });
+            }
+
+            actors = await GetActorsAsync();
+            DefaultActor = actors.First();
+            var stories = await GetStoriesAsync();
+            if (!stories.Any())
+            {
+                await SaveStoryAsync(new Story { Name = "Introduction" });
+                await SaveStoryAsync(new Story { Name = "Party with Friends" });
+            }
         }
 
         #endregion Methods

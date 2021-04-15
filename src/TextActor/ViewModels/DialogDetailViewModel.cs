@@ -142,7 +142,7 @@
         /// </summary>
         private async void LoadActors()
         {
-            Actors = await ActorDataStore.GetItemsAsync();
+            Actors = await App.Database.GetActorsAsync();
             SelectedActor = Actors.Where(actor => actor.Id == ActorId).FirstOrDefault();
         }
 

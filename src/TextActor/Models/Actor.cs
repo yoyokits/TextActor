@@ -40,7 +40,7 @@
         /// Gets or sets the Id.
         /// </summary>
         [PrimaryKey, AutoIncrement]
-        public int Id { get; set; } = IdCounter++;
+        public int Id { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether IsProtected.
@@ -66,11 +66,6 @@
         /// Gets or sets the Volume.
         /// </summary>
         public float Volume { get => _volume; set => this.Set(this.PropertyChangedHandler, ref _volume, value); }
-
-        /// <summary>
-        /// Gets or sets the IdCounter.
-        /// </summary>
-        private static int IdCounter { get; set; }
 
         #endregion Properties
 
