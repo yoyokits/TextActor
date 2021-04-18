@@ -33,11 +33,6 @@
         #region Properties
 
         /// <summary>
-        /// Gets the DialogDataStore.
-        /// </summary>
-        public IDataStore<Dialog> DialogDataStore => DependencyService.Get<IDataStore<Dialog>>();
-
-        /// <summary>
         /// Gets or sets a value indicating whether IsBusy.
         /// </summary>
         public bool IsBusy { get => _isBusy; set => SetProperty(ref _isBusy, value); }

@@ -11,6 +11,7 @@
     using TextActor.Extensions;
     using TextActor.Helpers;
     using TextActor.Models;
+    using TextActor.Services;
     using TextActor.Views;
     using Xamarin.Forms;
 
@@ -21,6 +22,8 @@
     public class StoryViewModel : BaseViewModel, ISelectable, IVisibilityChangedNotifiable
     {
         #region Fields
+
+        private int _id;
 
         private bool _isPlaying;
 
@@ -54,6 +57,7 @@
             PlaySelectedCommand = new Command<DialogDetailViewModel>(OnPlaySelected);
             RemoveSelectedCommand = new Command<DialogDetailViewModel>(OnRemoveSelected);
             TextPlayer = new TextPlayer();
+            Initialize();
         }
 
         #endregion Constructors
@@ -93,7 +97,20 @@
         /// <summary>
         /// Gets or sets the Id.
         /// </summary>
-        public int Id { get; set; }
+        public int Id
+        {
+            get => _id;
+            set
+            {
+                if (_id == value)
+                {
+                    return;
+                }
+
+                _id = value;
+                this.OnExecuteLoadDialogs();
+            }
+        }
 
         /// <summary>
         /// Gets or sets a value indicating whether IsNewItemMode.
@@ -213,10 +230,25 @@
         }
 
         /// <summary>
+        /// The Initialize.
+        /// </summary>
+        private async void Initialize()
+        {
+            var settings = await App.Database.GetSettingsAsync();
+            this.Id = settings.EditedStoryId;
+        }
+
+        /// <summary>
         /// The OnAddDialog.
         /// </summary>
         /// <param name="obj">The obj<see cref="object"/>.</param>
-        private async void OnAddDialog(object obj) => await Shell.Current.GoToAsync(nameof(NewDialogPage));
+        private async void OnAddDialog(object obj)
+        {
+            var actors = DialogDetails.Any() ? DialogDetails.First().Actors : await App.Database.GetActorsAsync();
+            var defaultActor = TextActorDataBase.DefaultActor;
+            var dialog = new DialogDetailViewModel { Actors = actors, SelectedActor = defaultActor };
+            DialogDetails.Add(dialog);
+        }
 
         /// <summary>
         /// The OnCancelNewStory.
@@ -241,13 +273,8 @@
             }
 
             this.IsBusy = true;
-            foreach (var dialog in DialogDetails)
-            {
-                await this.DialogDataStore.DeleteItemAsync(dialog.Id);
-            }
-
+            this.DialogDetails.Clear();
             this.IsBusy = false;
-            await OnExecuteLoadDialogs();
         }
 
         /// <summary>
@@ -278,19 +305,24 @@
             try
             {
                 DialogDetails.Clear();
-                var items = await DialogDataStore.GetItemsAsync(true);
                 var actors = await App.Database.GetActorsAsync();
                 if (actors == null || !actors.Any())
                 {
                     return;
                 }
 
-                foreach (var item in items)
+                var story = await App.Database.GetStoryAsync(this.Id);
+                if (story == null)
                 {
-                    var selectedActor = actors.Where(actor => actor.Id == item.ActorId).FirstOrDefault();
-                    var detail = new DialogDetailViewModel { Actors = actors, SelectedActor = selectedActor };
-                    detail.LoadDialogId(item.Id);
+                    return;
+                }
 
+                StoryTitle = story.Name;
+                var dialogs = await story.GetDialogs(actors);
+                foreach (var dialog in dialogs)
+                {
+                    var selectedActor = actors.Where(actor => actor.Id == dialog.ActorId).FirstOrDefault();
+                    var detail = new DialogDetailViewModel { Actors = actors, Message = dialog.Message, SelectedActor = selectedActor };
                     DialogDetails.Add(detail);
                 }
             }
@@ -351,17 +383,14 @@
         /// The OnRemoveSelected.
         /// </summary>
         /// <param name="dialog">The dialog<see cref="DialogDetailViewModel"/>.</param>
-        private async void OnRemoveSelected(DialogDetailViewModel dialog)
+        private void OnRemoveSelected(DialogDetailViewModel dialog)
         {
             if (dialog == null || DialogDetails == null || !DialogDetails.Contains(dialog))
             {
                 return;
             }
 
-            this.IsBusy = true;
-            await DialogDataStore.DeleteItemAsync(dialog.Id);
-            this.IsBusy = false;
-            await OnExecuteLoadDialogs();
+            DialogDetails.Remove(dialog);
         }
 
         /// <summary>
@@ -408,8 +437,11 @@
         /// <summary>
         /// The SaveStory.
         /// </summary>
-        private void SaveStory()
+        private async void SaveStory()
         {
+            var story = await this.ToStory();
+            await App.Database.SaveStoryAsync(story);
+            await App.Database.UpdateSettingsAsync(settings => settings.EditedStoryId = story.Id);
         }
 
         /// <summary>

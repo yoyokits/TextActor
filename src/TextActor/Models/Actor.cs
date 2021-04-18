@@ -115,6 +115,12 @@
             }
         }
 
+        public override string ToString()
+        {
+            var message = $"Id:{Id};Name:{Name};Country:{LocaleName}";
+            return message;
+        }
+
         #endregion Methods
     }
 }

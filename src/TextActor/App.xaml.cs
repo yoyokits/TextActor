@@ -26,9 +26,7 @@
         {
             InitializeComponent();
 
-            DependencyService.Register<DialogDataStore>();
             DependencyService.Register<MockDataStore>();
-            DependencyService.Register<StoryDataStore>();
             MainPage = new AppShell();
         }
 

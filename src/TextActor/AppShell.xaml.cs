@@ -17,7 +17,6 @@
         {
             InitializeComponent();
             Routing.RegisterRoute(nameof(ActorPage), typeof(ActorPage));
-            Routing.RegisterRoute(nameof(NewDialogPage), typeof(NewDialogPage));
             Routing.RegisterRoute(nameof(StoryManagerPage), typeof(StoryManagerPage));
             Routing.RegisterRoute(nameof(ItemDetailPage), typeof(ItemDetailPage));
             Routing.RegisterRoute(nameof(NewItemPage), typeof(NewItemPage));

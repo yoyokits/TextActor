@@ -31,13 +31,31 @@
         }
 
         /// <summary>
+        /// The ToDialogs.
+        /// </summary>
+        /// <param name="dialogDetails">The dialogDetails<see cref="IList{DialogDetailViewModel}"/>.</param>
+        /// <returns>The <see cref="IList{Dialog}"/>.</returns>
+        public static IList<Dialog> ToDialogs(this IList<DialogDetailViewModel> dialogDetails)
+        {
+            var dialogs = new List<Dialog>();
+            var id = 0;
+            foreach (var model in dialogDetails)
+            {
+                var dialog = new Dialog { Id = id++, ActorId = model.SelectedActor.Id, Message = model.Message };
+                dialogs.Add(dialog);
+            }
+
+            return dialogs;
+        }
+
+        /// <summary>
         /// The ToStory.
         /// </summary>
         /// <param name="storyViewModel">The storyViewModel<see cref="StoryViewModel"/>.</param>
         /// <returns>The <see cref="Task{Story}"/>.</returns>
         public static async Task<Story> ToStory(this StoryViewModel storyViewModel)
         {
-            var dialogs = await storyViewModel.DialogDataStore.GetItemsAsync();
+            var dialogs = storyViewModel.DialogDetails.ToDialogs();
             var playedActorIds = dialogs.Select(dialog => dialog.ActorId).Distinct();
             var availableActors = await App.Database.GetActorsAsync();
             if (availableActors == null || !availableActors.Any())

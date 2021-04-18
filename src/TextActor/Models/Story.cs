@@ -23,7 +23,7 @@
         #region Properties
 
         /// <summary>
-        /// Gets or sets the Played Actors in Json...
+        /// Gets or sets the Played Actors in Json.
         /// </summary>
         public string ActorsJson { get; set; }
 
@@ -49,5 +49,19 @@
         public string Name { get; set; }
 
         #endregion Properties
+
+        #region Methods
+
+        /// <summary>
+        /// The ToString.
+        /// </summary>
+        /// <returns>The <see cref="string"/>.</returns>
+        public override string ToString()
+        {
+            var message = $"Story Title:{Name};Id:{Id}";
+            return message;
+        }
+
+        #endregion Methods
     }
 }

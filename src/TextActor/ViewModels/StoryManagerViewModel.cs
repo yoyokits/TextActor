@@ -115,15 +115,21 @@
         /// The OnDisappearing.
         /// </summary>
         /// <param name="obj">The obj<see cref="object"/>.</param>
-        public void OnDisappearing(object obj)
+        public async void OnDisappearing(object obj)
         {
+            if (SelectedItem == null)
+            {
+                return;
+            }
+
+            await App.Database.UpdateSettingsAsync(settings => settings.EditedStoryId = SelectedItem.Id);
         }
 
         /// <summary>
         /// The OnAddAsync.
         /// </summary>
         /// <param name="story">The story<see cref="object"/>.</param>
-        private async void OnAddAsync(object story) => await Shell.Current.GoToAsync(nameof(NewDialogPage));
+        private async void OnAddAsync(object story) => await Shell.Current.GoToAsync(nameof(StoryPage));
 
         /// <summary>
         /// The OnEditSelectedAsync.
@@ -153,11 +159,16 @@
             {
                 Stories.Clear();
                 var stories = await StoryDataStore.GetItemsAsync(true);
+                var settings = await App.Database.GetSettingsAsync();
 
                 foreach (var story in stories)
                 {
-                    var detail = new StoryViewModel { Id = story.Id };
-                    Stories.Add(detail);
+                    var item = new StoryViewModel { Id = story.Id };
+                    Stories.Add(item);
+                    if (item.Id == settings.Id)
+                    {
+                        SelectedItem = item;
+                    }
                 }
             }
             catch (Exception ex)

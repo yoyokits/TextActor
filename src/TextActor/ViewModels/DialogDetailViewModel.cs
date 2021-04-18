@@ -1,25 +1,20 @@
 ﻿namespace TextActor.ViewModels
 {
-    using System;
     using System.Collections.Generic;
-    using System.Diagnostics;
-    using System.Linq;
     using System.Windows.Input;
     using TextActor.Helpers;
     using TextActor.Models;
+    using TextActor.Services;
     using Xamarin.Forms;
 
     /// <summary>
     /// Defines the <see cref="DialogDetailViewModel" />.
     /// </summary>
-    [QueryProperty(nameof(Id), nameof(Id))]
     public class DialogDetailViewModel : BaseViewModel, ISelectable
     {
         #region Fields
 
         private IEnumerable<Actor> _actors;
-
-        private int _id;
 
         private bool _isSelected;
 
@@ -36,19 +31,23 @@
         /// </summary>
         public DialogDetailViewModel()
         {
-            TextPlayer = new TextPlayer();
-            PlayCommand = new Command(this.OnPlay);
+            SelectedActor = TextActorDataBase.DefaultActor;
+            PlayCommand = new Command(OnPlay, Validate);
             StopCommand = new Command(this.OnStop);
+            TextPlayer = new TextPlayer();
+            this.PropertyChanged +=
+                (_, e) =>
+                {
+                    if (e.PropertyName == nameof(this.Message))
+                    {
+                        PlayCommand.ChangeCanExecute();
+                    }
+                };
         }
 
         #endregion Constructors
 
         #region Properties
-
-        /// <summary>
-        /// Gets the ActorId.
-        /// </summary>
-        public int ActorId { get; private set; }
 
         /// <summary>
         /// Gets or sets the Actors.
@@ -58,21 +57,7 @@
         /// <summary>
         /// Gets or sets the Id.
         /// </summary>
-        public int Id
-        {
-            get => _id;
-            set
-            {
-                if (_id == value)
-                {
-                    return;
-                }
-
-                _id = value;
-                LoadDialogId(Id);
-                LoadActors();
-            }
-        }
+        public int Id { get; set; } = IdCounter++;
 
         /// <summary>
         /// Gets or sets a value indicating whether IsSelected.
@@ -87,7 +72,7 @@
         /// <summary>
         /// Gets the PlayCommand.
         /// </summary>
-        public ICommand PlayCommand { get; }
+        public Command PlayCommand { get; }
 
         /// <summary>
         /// Gets or sets the SelectedActor.
@@ -104,9 +89,24 @@
         /// </summary>
         public TextPlayer TextPlayer { get; }
 
+        /// <summary>
+        /// Gets or sets the IdCounter.
+        /// </summary>
+        private static int IdCounter { get; set; }
+
         #endregion Properties
 
         #region Methods
+
+        /// <summary>
+        /// The ToString.
+        /// </summary>
+        /// <returns>The <see cref="string"/>.</returns>
+        public override string ToString()
+        {
+            var message = $"{SelectedActor.Name}:{Message.Substring(0, 20)}";
+            return message;
+        }
 
         /// <summary>
         /// The ValidateDialog.
@@ -116,34 +116,6 @@
         {
             var isValid = SelectedActor != null && !string.IsNullOrWhiteSpace(Message);
             return isValid;
-        }
-
-        /// <summary>
-        /// The LoadDialogId.
-        /// </summary>
-        /// <param name="id">The id<see cref="int"/>.</param>
-        internal async void LoadDialogId(int id)
-        {
-            try
-            {
-                var dialog = await DialogDataStore.GetItemAsync(id);
-                _id = id;
-                ActorId = dialog.ActorId;
-                Message = dialog.Message;
-            }
-            catch (Exception)
-            {
-                Debug.WriteLine("Failed to Load Item");
-            }
-        }
-
-        /// <summary>
-        /// The LoadActors.
-        /// </summary>
-        private async void LoadActors()
-        {
-            Actors = await App.Database.GetActorsAsync();
-            SelectedActor = Actors.Where(actor => actor.Id == ActorId).FirstOrDefault();
         }
 
         /// <summary>
@@ -162,6 +134,16 @@
         private void OnStop(object obj)
         {
             TextPlayer.Stop();
+        }
+
+        /// <summary>
+        /// The Validate.
+        /// </summary>
+        /// <param name="arg">The arg<see cref="object"/>.</param>
+        /// <returns>The <see cref="bool"/>.</returns>
+        private bool Validate(object arg)
+        {
+            return !string.IsNullOrEmpty(Message) && !string.IsNullOrWhiteSpace(Message) && SelectedActor != null;
         }
 
         #endregion Methods

@@ -70,7 +70,7 @@
                                             Command="{Binding Source={RelativeSource AncestorType={x:Type vm:StoryViewModel}}, Path=RemoveSelectedCommand}"
                                             CommandParameter="{Binding}"
                                             HeightRequest="34"
-                                            ImageSource="clear.png"
+                                            ImageSource="remove.png"
                                             VerticalOptions="Start"
                                             WidthRequest="34" />
                                         <Button
@@ -86,7 +86,6 @@
                                     Margin="20,0,10,0"
                                     AutoSize="TextChanges"
                                     FontSize="16"
-                                    IsReadOnly="{Binding IsSelected, Converter={x:Static converters:InverseBoolConverter.Instance}}"
                                     Text="{Binding Message, Mode=TwoWay}">
                                     <Editor.GestureRecognizers>
                                         <TapGestureRecognizer
