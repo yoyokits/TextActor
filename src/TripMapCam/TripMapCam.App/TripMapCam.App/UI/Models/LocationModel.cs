@@ -1,6 +1,6 @@
 ﻿namespace TripMapCam.App.UI.Models
 {
-    using TripMapCam.App.UI.Helpers;
+    using TripMapCam.App.Helpers;
     using Xamarin.Essentials;
 
     /// <summary>

@@ -1,4 +1,4 @@
-﻿namespace TripMapCam.App.UI.Helpers
+﻿namespace TripMapCam.App.Helpers
 {
     using System;
     using System.Runtime.CompilerServices;

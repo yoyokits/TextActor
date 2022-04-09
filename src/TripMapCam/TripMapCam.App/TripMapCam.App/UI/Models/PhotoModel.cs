@@ -1,7 +1,8 @@
 ﻿namespace TripMapCam.App.UI.Models
 {
+    using SQLite;
     using System;
-    using TripMapCam.App.UI.Helpers;
+    using TripMapCam.App.Helpers;
     using Xamarin.Essentials;
 
     /// <summary>
@@ -92,6 +93,12 @@
                 }
             }
         }
+
+        /// <summary>
+        /// Gets or sets the Id.
+        /// </summary>
+        [PrimaryKey, AutoIncrement]
+        public int Id { get; set; }
 
         /// <summary>
         /// Gets or sets the ImpressionCount.

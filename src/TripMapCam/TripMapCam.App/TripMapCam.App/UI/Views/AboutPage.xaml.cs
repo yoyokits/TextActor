@@ -1,19 +1,20 @@
 ﻿namespace TripMapCam.App.UI.Views
 {
+    using Xamarin.Forms;
     using Xamarin.Forms.Xaml;
 
     /// <summary>
-    /// Defines the <see cref="PreviewView" />.
+    /// Defines the <see cref="AboutPage" />.
     /// </summary>
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class PreviewView
+    public partial class AboutPage : ContentPage
     {
         #region Constructors
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="PreviewView"/> class.
+        /// Initializes a new instance of the <see cref="AboutPage"/> class.
         /// </summary>
-        public PreviewView()
+        public AboutPage()
         {
             this.InitializeComponent();
         }
