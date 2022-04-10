@@ -19,8 +19,8 @@
         /// The GetImageLocationFromExif.
         /// </summary>
         /// <param name="filePath">The filePath<see cref="string"/>.</param>
-        /// <returns>The <see cref="(double altitude, double latitude)"/>.</returns>
-        (double altitude, double latitude) GetImageLocationFromExif(string filePath);
+        /// <returns>The <see cref="(double latitude, double longitude, double altitude)"/>.</returns>
+        (double latitude, double longitude, double altitude) GetImageLocationFromExif(string filePath);
 
         #endregion
     }

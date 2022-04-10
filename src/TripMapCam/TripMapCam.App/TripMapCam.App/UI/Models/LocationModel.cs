@@ -17,6 +17,11 @@
         public double Accuracy { get; set; } = double.NaN;
 
         /// <summary>
+        /// Gets or sets the AdminArea.
+        /// </summary>
+        public string AdminArea { get; internal set; }
+
+        /// <summary>
         /// Gets or sets the Altitude.
         /// </summary>
         public double Altitude { get; set; } = double.NaN;
@@ -27,25 +32,19 @@
         public AltitudeReferenceSystem AltitudeReferenceSystem { get; set; }
 
         /// <summary>
-        /// Gets or sets the City.
+        /// Gets or sets the CountryCode.
         /// </summary>
-        public string City { get; set; }
+        public string CountryCode { get; internal set; }
 
         /// <summary>
-        /// Gets or sets the Country.
+        /// Gets or sets the CountryName.
         /// </summary>
-        public string Country { get; set; }
+        public string CountryName { get; internal set; }
 
         /// <summary>
-        /// Gets or sets the District.
+        /// Gets or sets the FeatureName.
         /// </summary>
-        public string District { get; set; }
-
-        /// <summary>
-        /// Gets or sets the Id.
-        /// </summary>
-        [PrimaryKey, AutoIncrement]
-        public int Id { get; set; }
+        public string FeatureName { get; internal set; }
 
         /// <summary>
         /// Gets or sets the Latitude.
@@ -53,14 +52,35 @@
         public double Latitude { get; set; } = double.NaN;
 
         /// <summary>
+        /// Gets or sets the Locality.
+        /// </summary>
+        public string Locality { get; internal set; }
+
+        /// <summary>
         /// Gets or sets the Longitude.
         /// </summary>
         public double Longitude { get; set; } = double.NaN;
 
         /// <summary>
+        /// Gets or sets the Photo Id..
+        /// </summary>
+        [Unique, Indexed]
+        public int PhotoId { get; set; }
+
+        /// <summary>
         /// Gets or sets the Speed.
         /// </summary>
         public double Speed { get; set; } = double.NaN;
+
+        /// <summary>
+        /// Gets or sets the SubAdminArea.
+        /// </summary>
+        public string SubAdminArea { get; internal set; }
+
+        /// <summary>
+        /// Gets or sets the SubLocality.
+        /// </summary>
+        public string SubLocality { get; internal set; }
 
         /// <summary>
         /// Gets or sets the Timestamp.

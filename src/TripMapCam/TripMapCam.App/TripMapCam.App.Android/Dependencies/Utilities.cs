@@ -1,13 +1,9 @@
-﻿using TripMapCam.App.Droid.Dependencies;
-using Xamarin.Forms;
-
-[assembly: Dependency(typeof(Utilities))]
+﻿[assembly: Xamarin.Forms.Dependency(typeof(TripMapCam.App.Droid.Dependencies.Utilities))]
 namespace TripMapCam.App.Droid.Dependencies
 {
     using Android.Media;
     using Android.OS;
     using TripMapCam.App.Dependencies;
-    using TripMapCam.App.UI.Models;
 
     /// <summary>
     /// Defines the <see cref="Utilities" />.
@@ -40,12 +36,13 @@ namespace TripMapCam.App.Droid.Dependencies
         /// The GetImageLocationFromExif.
         /// </summary>
         /// <param name="filePath">The filePath<see cref="string"/>.</param>
-        /// <returns>The <see cref="LocationModel"/>.</returns>
-        public (double altitude, double latitude) GetImageLocationFromExif(string filePath)
+        /// <returns>The <see cref="(double latitude, double longitude, double altitude)"/>.</returns>
+        public (double latitude, double longitude, double altitude) GetImageLocationFromExif(string filePath)
         {
-            var newExif = new ExifInterface(filePath);
+            var exif = new ExifInterface(filePath);
+            var altitude = exif.GetAltitude(double.NaN);
             var gpsCoordinate = new float[2];
-            return !newExif.GetLatLong(gpsCoordinate) ? (double.NaN, double.NaN) : (gpsCoordinate[0], gpsCoordinate[1]);
+            return !exif.GetLatLong(gpsCoordinate) ? (double.NaN, double.NaN, altitude) : (gpsCoordinate[0], gpsCoordinate[1], altitude);
         }
 
         #endregion

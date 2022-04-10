@@ -7,27 +7,31 @@
     /// <summary>
     /// Defines the <see cref="PhotoModel" />.
     /// </summary>
-    public class PhotoModel : NotifyPropertyChanged
+    public class PhotoModel : NotifyPropertyChanged, IEquatable<PhotoModel>
     {
         #region Fields
 
-        private double _altitude;
+        private double _altitude = double.NaN;
 
         private string _city;
 
         private string _country;
 
-        private DateTime _createdTime;
-
         private string _filePath;
 
         private int _impressionCount;
 
-        private double _latitude;
+        private double _latitude = double.NaN;
 
         private int _locationId;
 
+        private double _longitude = double.NaN;
+
         private int _starCount;
+
+        private string _thumbPath;
+
+        private DateTime _timeCreated;
 
         #endregion
 
@@ -44,7 +48,7 @@
                 if (_altitude != value)
                 {
                     _altitude = value;
-                    OnPropertyChanged(nameof(Altitude));
+                    OnPropertyChanged();
                 }
             }
         }
@@ -82,24 +86,9 @@
         }
 
         /// <summary>
-        /// Gets or sets the CreatedTime.
-        /// </summary>
-        public DateTime CreatedTime
-        {
-            get { return _createdTime; }
-            set
-            {
-                if (_createdTime != value)
-                {
-                    _createdTime = value;
-                    OnPropertyChanged();
-                }
-            }
-        }
-
-        /// <summary>
         /// Gets or sets the FilePath.
         /// </summary>
+        [Indexed, Unique]
         public string FilePath
         {
             get { return _filePath; }
@@ -146,7 +135,7 @@
                 if (_latitude != value)
                 {
                     _latitude = value;
-                    OnPropertyChanged(nameof(Latitude));
+                    OnPropertyChanged();
                 }
             }
         }
@@ -168,6 +157,22 @@
         }
 
         /// <summary>
+        /// Gets or sets the Longitude.
+        /// </summary>
+        public double Longitude
+        {
+            get { return _longitude; }
+            set
+            {
+                if (_longitude != value)
+                {
+                    _longitude = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        /// <summary>
         /// Gets or sets the StarCount.
         /// </summary>
         public int StarCount
@@ -181,6 +186,87 @@
                     OnPropertyChanged();
                 }
             }
+        }
+
+        /// <summary>
+        /// Gets or sets the ThumbPath.
+        /// </summary>
+        public string ThumbPath
+        {
+            get { return _thumbPath; }
+            set
+            {
+                if (_thumbPath != value)
+                {
+                    _thumbPath = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the TimeCreated.
+        /// </summary>
+        public DateTime TimeCreated
+        {
+            get { return _timeCreated; }
+            set
+            {
+                if (_timeCreated != value)
+                {
+                    _timeCreated = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        #endregion
+
+        #region Methods
+
+        /// <summary>
+        /// The Equals.
+        /// </summary>
+        /// <param name="obj">The obj<see cref="object"/>.</param>
+        /// <returns>The <see cref="bool"/>.</returns>
+        public override bool Equals(object obj)
+        {
+            if (!(obj is PhotoModel model))
+            {
+                return false;
+            }
+
+            return this.Equals(model);
+        }
+
+        /// <summary>
+        /// The Equals.
+        /// </summary>
+        /// <param name="other">The other<see cref="PhotoModel"/>.</param>
+        /// <returns>The <see cref="bool"/>.</returns>
+        public bool Equals(PhotoModel other)
+        {
+            if (other is null)
+            {
+                return false;
+            }
+
+            if (ReferenceEquals(this, other))
+            {
+                return true;
+            }
+
+            var isEqual = this.FilePath == other.FilePath;
+            return isEqual;
+        }
+
+        /// <summary>
+        /// The GetHashCode.
+        /// </summary>
+        /// <returns>The <see cref="int"/>.</returns>
+        public override int GetHashCode()
+        {
+            return this.FilePath.GetHashCode();
         }
 
         #endregion
