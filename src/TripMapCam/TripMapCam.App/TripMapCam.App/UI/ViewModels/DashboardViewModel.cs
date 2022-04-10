@@ -44,9 +44,9 @@
         /// <returns>The <see cref="Task"/>.</returns>
         internal async Task LoadDataBase()
         {
-            ////var dataBase = App.Database;
-            ////var photoModels = await dataBase.GetPhotoModelsAsync();
-            ////if (!photoModels.Any())
+            var dataBase = App.Database;
+            var photoModels = await dataBase.GetPhotoModelsAsync();
+            //if (!photomodels.any())
             {
                 await PhotoModelController.PopulatePhotos();
             }

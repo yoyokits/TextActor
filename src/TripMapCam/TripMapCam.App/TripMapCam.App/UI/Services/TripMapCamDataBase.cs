@@ -28,6 +28,7 @@
         {
             _database = new SQLiteAsyncConnection(dbPath);
             _database.CreateTableAsync<PhotoModel>().Wait();
+            _database.CreateTableAsync<LocationModel>().Wait();
         }
 
         #endregion

@@ -3,7 +3,6 @@
     using SQLite;
     using System;
     using TripMapCam.App.Helpers;
-    using Xamarin.Essentials;
 
     /// <summary>
     /// Defines the <see cref="PhotoModel" />.
@@ -11,6 +10,8 @@
     public class PhotoModel : NotifyPropertyChanged
     {
         #region Fields
+
+        private double _altitude;
 
         private string _city;
 
@@ -22,13 +23,31 @@
 
         private int _impressionCount;
 
-        private Location _location;
+        private double _latitude;
+
+        private int _locationId;
 
         private int _starCount;
 
         #endregion
 
         #region Properties
+
+        /// <summary>
+        /// Gets or sets the Altitude.
+        /// </summary>
+        public double Altitude
+        {
+            get { return _altitude; }
+            set
+            {
+                if (_altitude != value)
+                {
+                    _altitude = value;
+                    OnPropertyChanged(nameof(Altitude));
+                }
+            }
+        }
 
         /// <summary>
         /// Gets or sets the City.
@@ -117,16 +136,32 @@
         }
 
         /// <summary>
-        /// Gets or sets the Location.
+        /// Gets or sets the Latitude.
         /// </summary>
-        public Location Location
+        public double Latitude
         {
-            get { return _location; }
+            get { return _latitude; }
             set
             {
-                if (_location != value)
+                if (_latitude != value)
                 {
-                    _location = value;
+                    _latitude = value;
+                    OnPropertyChanged(nameof(Latitude));
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the LocationId.
+        /// </summary>
+        public int LocationId
+        {
+            get { return _locationId; }
+            set
+            {
+                if (_locationId != value)
+                {
+                    _locationId = value;
                     OnPropertyChanged();
                 }
             }
