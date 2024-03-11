@@ -1,9 +1,15 @@
-﻿namespace TextActor.Droid
+﻿// ========================================== //
+// Developer: Yohanes Wahyu Nurcahyo          //
+// Website: https://github.com/yoyokits       //
+// ========================================== //
+
+namespace TextActor.Droid
 {
     using Android.App;
     using Android.Content.PM;
     using Android.OS;
     using Android.Runtime;
+    using System;
 
     /// <summary>
     /// Defines the <see cref="MainActivity" />.
@@ -36,10 +42,16 @@
             ToolbarResource = Resource.Layout.Toolbar;
 
             base.OnCreate(savedInstanceState);
+            AppDomain.CurrentDomain.UnhandledException += CurrentDomainUnhandledException;
 
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             LoadApplication(new App());
+        }
+
+        private void CurrentDomainUnhandledException(object sender, UnhandledExceptionEventArgs e)
+        {
+            System.Diagnostics.Debug.WriteLine(e.ToString());
         }
 
         #endregion Methods
