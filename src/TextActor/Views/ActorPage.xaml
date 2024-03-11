@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="TextActor.Views.ActorPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:extensions="clr-namespace:TextActor.Extensions"
+    xmlns:vm="clr-namespace:TextActor.ViewModels"
+    Title="{Binding Title}"
+    extensions:VisibilityChangeExtension.NotifyVisibilityChanged="True"
+    x:DataType="vm:ActorViewModel">
+    <ContentPage.BindingContext>
+        <vm:ActorViewModel />
+    </ContentPage.BindingContext>
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Command="{Binding SaveCommand}" IconImageSource="add_actor" />
+        <ToolbarItem Command="{Binding PlayCommand}" IconImageSource="{Binding TextPlayer.PlayButtonImage}" />
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <StackLayout Padding="15" Spacing="3">
+            <StackLayout>
+                <Label FontSize="Medium" Text="Name" />
+                <Entry
+                    FontSize="Medium"
+                    Placeholder="Type the actor name here..."
+                    Text="{Binding Name, Mode=TwoWay}" />
+            </StackLayout>
+            <Label FontSize="Medium" Text="Actor language" />
+            <Picker
+                Title="Select an actor language"
+                ItemDisplayBinding="{Binding Name}"
+                ItemsSource="{Binding Locales}"
+                SelectedItem="{Binding SelectedLocale, Mode=TwoWay}" />
+            <Label FontSize="Medium" Text="Pitch" />
+            <StackLayout HorizontalOptions="FillAndExpand" Orientation="Horizontal">
+                <Slider
+                    HorizontalOptions="FillAndExpand"
+                    MaximumTrackColor="{StaticResource Accent}"
+                    Minimum="0.1"
+                    MinimumTrackColor="{StaticResource Primary}"
+                    Value="{Binding Pitch, Mode=TwoWay, StringFormat='{}{0:0.##}'}" />
+                <Label
+                    FontSize="Medium"
+                    Text="{Binding Pitch}"
+                    WidthRequest="50" />
+            </StackLayout>
+            <Label FontSize="Medium" Text="Volume" />
+            <StackLayout HorizontalOptions="FillAndExpand" Orientation="Horizontal">
+                <Slider
+                    HorizontalOptions="FillAndExpand"
+                    MaximumTrackColor="{StaticResource Accent}"
+                    Minimum="0.1"
+                    MinimumTrackColor="{StaticResource Primary}"
+                    Value="{Binding Volume, Mode=TwoWay}" />
+                <Label
+                    FontSize="Medium"
+                    Text="{Binding Volume, StringFormat='{}{0:0.##}'}"
+                    WidthRequest="50" />
+            </StackLayout>
+            <Label FontSize="Medium" Text="Test Text" />
+            <Editor HeightRequest="120" Text="{Binding TestText, Mode=TwoWay}" />
+            <Button
+                Command="{Binding CancelCommand}"
+                HorizontalOptions="FillAndExpand"
+                IsVisible="{Binding IsNewItemMode}"
+                Text="Cancel" />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

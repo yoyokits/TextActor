@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="TextActor.Views.TextPlayerPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:extensions="clr-namespace:TextActor.Extensions"
+    xmlns:vm="clr-namespace:TextActor.ViewModels"
+    Title="{Binding Title}"
+    extensions:VisibilityChangeExtension.NotifyVisibilityChanged="True"
+    x:DataType="vm:TextPlayerViewModel">
+    <ContentPage.BindingContext>
+        <vm:TextPlayerViewModel />
+    </ContentPage.BindingContext>
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Command="{Binding ClearCommand}" IconImageSource="clear.png" />
+        <ToolbarItem Command="{Binding PasteAndPlayCommand}" IconImageSource="paste.png" />
+        <ToolbarItem Command="{Binding PlayCommand}" IconImageSource="{Binding PlayButtonImage}" />
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <Grid>
+            <Editor Placeholder="Type or paste text here and press play to hear it..." Text="{Binding Text}" />
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

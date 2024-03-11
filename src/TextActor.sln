@@ -1,0 +1,41 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30517.126
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TextActor.Android", "TextActor.Android\TextActor.Android.csproj", "{B54C22CD-A3EA-4B46-8284-8A041F721BF7}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TextActor", "TextActor\TextActor.csproj", "{345BFB97-58A6-4283-BCD8-FE4CDB4F0BC2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TextActor.Test", "TextActor.Test\TextActor.Test.csproj", "{13951614-E8EB-429F-BF25-9B2E15FB37EC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B54C22CD-A3EA-4B46-8284-8A041F721BF7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B54C22CD-A3EA-4B46-8284-8A041F721BF7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B54C22CD-A3EA-4B46-8284-8A041F721BF7}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{B54C22CD-A3EA-4B46-8284-8A041F721BF7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B54C22CD-A3EA-4B46-8284-8A041F721BF7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B54C22CD-A3EA-4B46-8284-8A041F721BF7}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{345BFB97-58A6-4283-BCD8-FE4CDB4F0BC2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{345BFB97-58A6-4283-BCD8-FE4CDB4F0BC2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{345BFB97-58A6-4283-BCD8-FE4CDB4F0BC2}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{345BFB97-58A6-4283-BCD8-FE4CDB4F0BC2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{345BFB97-58A6-4283-BCD8-FE4CDB4F0BC2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{345BFB97-58A6-4283-BCD8-FE4CDB4F0BC2}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{13951614-E8EB-429F-BF25-9B2E15FB37EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{13951614-E8EB-429F-BF25-9B2E15FB37EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{13951614-E8EB-429F-BF25-9B2E15FB37EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{13951614-E8EB-429F-BF25-9B2E15FB37EC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {EF8423A0-45CC-4820-9D4A-75D2FAE4A761}
+	EndGlobalSection
+EndGlobal
