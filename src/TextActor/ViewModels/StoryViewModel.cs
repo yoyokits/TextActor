@@ -1,6 +1,12 @@
-﻿namespace TextActor.ViewModels
+﻿// ========================================== //
+// Developer: Yohanes Wahyu Nurcahyo          //
+// Website: https://github.com/yoyokits       //
+// ========================================== //
+
+namespace TextActor.ViewModels
 {
     using System;
+    using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using System.Diagnostics;
     using System.Linq;
@@ -227,6 +233,11 @@
             }
 
             SaveStory();
+        }
+
+        public IEnumerable<string> Sort(List<string> items)
+        {
+            return items.OrderBy(item => item);
         }
 
         /// <summary>
